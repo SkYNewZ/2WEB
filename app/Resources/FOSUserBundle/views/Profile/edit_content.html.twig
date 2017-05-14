@@ -1,0 +1,25 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+<div class="register">
+    <div class="container">
+        <h2>{{ 'profile.edit.title'|trans }}</h2>
+        <div class="login-form-grids">
+            <h5>{{ 'profile.edit.profile'|trans }}</h5>
+            {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+            {{ form_widget(form.lastName, {'attr': { 'placeholder': 'form.lastname'} }) }}
+            {{ form_widget(form.firstName, {'attr': { 'placeholder': 'form.firstname'} }) }}
+            <h6>{{ 'profile.edit.login'|trans }}</h6>
+            {{ form_widget(form.username, {'attr': { 'placeholder': 'form.username'} }) }}
+            {{ form_widget(form.email, {'attr': { 'placeholder': 'form.email'} }) }}
+            {{ form_widget(form.delivery, {'attr': { 'placeholder': 'form.delivery'} }) }}
+            {{ form_widget(form.billing, {'attr': { 'placeholder': 'form.billing'} }) }}
+            {{ form_widget(form.current_password, {'attr': { 'placeholder': 'form.current_password'} }) }}
+            <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+            {{ form_end(form) }}
+        </div>
+        <div class="register-home">
+            <a href="{{ path('homepage') }}">{{ 'profile.edit.home'|trans }}</a>
+        </div>
+    </div>
+</div>

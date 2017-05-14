@@ -918,7 +918,7 @@ a.w3_agile_vimeo:hover{
     width: 100%;
 }
 
-.login-form-grids input[type="password"]{
+.login-form-grids input{
 	margin:1em 0 0;
 }
 .forgot {

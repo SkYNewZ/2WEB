@@ -99,7 +99,7 @@
                     <li class="active"><a
                                 href="{{ path(app.request.attributes.get("_route"), {'page' : 1, 'name' : app.request.get('name')}) }}">1<span
                                     class="sr-only">(current)</span></a></li>
-                    {% for i in 0..10 %}
+                    {% for i in 0..5 %}
                         {% if not i == 0 %}
                             <li>
                                 <a href="{{ path(app.request.attributes.get("_route"), {'page' : i + 1, 'name' : app.request.get('name')}) }}">{{ i + 1 }}</a>

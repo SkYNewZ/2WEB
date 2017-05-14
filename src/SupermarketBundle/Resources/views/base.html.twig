@@ -35,18 +35,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="agile-login">
             <ul>
-                <li><a href="registered.html"> {{ 'Create Account'|trans }} </a></li>
-                <li><a href="login.html">{{ 'Login'|trans }}</a></li>
+                {% if not app.user %}
+                    <li><a href="{{ path('fos_user_registration_register') }}"> {{ 'Create Account'|trans }} </a></li>
+                    <li><a href="{{ path('fos_user_security_login') }}">{{ 'Login'|trans }}</a></li>
+                {% else %}
+                    <li><a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}">{{ 'Logout'|trans }}</a></li>
+                {% endif %}
                 <li><a href="{{ path('contact') }}">{{ 'Help'|trans }}</a></li>
 
             </ul>
         </div>
         <div class="product_list_header">
-            <form action="{{ path('checkout') }}" method="post" class="last">
-                <input type="hidden" name="cmd" value="_cart">
-                <input type="hidden" name="display" value="1">
-                <button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down"
-                                                                                    aria-hidden="true"></i></button>
+            <form class="last" action="{{ path('checkout') }}">
+                <button class="w3view-cart" type="submit">
+                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                </button>
             </form>
         </div>
         <div class="clearfix"></div>
@@ -57,7 +61,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="container">
         <div class="w3ls_logo_products_left1">
             <ul class="phone_email">
-                <li><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:quentin.lemaire@supinfo.com">quentin.lemaire@supinfo.com</a></li>
+                <li><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:quentin.lemaire@supinfo.com">quentin.lemaire@supinfo.com</a>
+                </li>
 
             </ul>
         </div>
@@ -66,7 +71,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="w3l_search">
             <form action="{{ path('search') }}" method="get">
-                <input type="search" name="search_query" placeholder="{{ 'Search for a Product'|trans }}..." required="">
+                <input type="search" name="search_query" placeholder="{{ 'Search for a Product'|trans }}..."
+                       required="">
                 <button type="submit" class="btn btn-default search" aria-label="Left Align">
                     <i class="fa fa-search" aria-hidden="true"> </i>
                 </button>
@@ -128,9 +134,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-md-3 w3_footer_grid">
                 <h3>Information</h3>
                 <ul class="info">
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">{{ 'footer.about_us'|trans }}</a></li>
+                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a
+                                href="#">{{ 'footer.about_us'|trans }}</a></li>
                     <li>
-                        <i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{ path('contact') }}">{{ 'footer.contact_us'|trans }}</a>
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i><a
+                                href="{{ path('contact') }}">{{ 'footer.contact_us'|trans }}</a>
                     </li>
                 </ul>
             </div>
@@ -138,13 +146,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-md-3 w3_footer_grid">
                 <h3>{{ 'footer.profile'|trans }}</h3>
                 <ul class="info">
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{ path('magasin', {'page': 1}) }}">{{ 'footer.store'|trans }}</a></li>
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{ path('checkout') }}">{{ 'footer.my_cart'|trans }}</a></li>
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.html">{{ 'Login'|trans }}</a></li>
-                    <li>
-                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                        <a href="registered.html">{{ 'Create Account'|trans }}</a>
-                    </li>
+                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a
+                                href="{{ path('magasin', {'page': 1}) }}">{{ 'footer.store'|trans }}</a></li>
+                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a
+                                href="{{ path('checkout') }}">{{ 'footer.my_cart'|trans }}</a></li>
+                    {% if not app.user %}
+                        <li>
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            <a href="{{ path('fos_user_security_login') }}">{{ 'Login'|trans }}
+                            </a>
+                        </li>
+                        <li>
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            <a href="{{ path('fos_user_registration_register') }}">{{ 'Create Account'|trans }}</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            <a href="{{ path('fos_user_security_logout') }}">{{ 'Logout'|trans }}</a>
+                        </li>
+
+                    {% endif %}
                 </ul>
             </div>
             <div class="clearfix"></div>

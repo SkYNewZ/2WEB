@@ -5,3 +5,13 @@ services:
     supermarket.api:
         class: SupermarketBundle\Service\API
         arguments: ["@circle.restclient"]
+
+    supermarket.form.registration:
+        class: SupermarketBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: supermarket_user_registration }
+
+    supermarket.form.profile:
+        class: SupermarketBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: supermarket_user_profile }

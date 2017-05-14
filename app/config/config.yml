@@ -76,3 +76,17 @@ circle_rest_client:
         CURLOPT_HTTPHEADER:     ['Accept-Language: fr-FR,fr;Content-Type: application/json;charset=UTF-8' ]
         CURLOPT_FOLLOWLOCATION: true
         CURLOPT_TIMEOUT: 20
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: SupermarketBundle\Entity\User
+    from_email:
+        address: 'null'
+        sender_name: "supermarket@lemairepro.fr"
+    registration:
+        form:
+            type: SupermarketBundle\Form\RegistrationType
+    profile:
+        form:
+            type: SupermarketBundle\Form\ProfileType

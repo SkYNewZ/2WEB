@@ -3,6 +3,7 @@ All: Tout
 Contact: Contact
 Categories: Catégories
 'Create Account': 'S''enregistrer'
+Edit profile: Editer le profil
 Login: 'Se connecter'
 Help: Aide
 'Search for a Product': 'Rechercher un produit'
@@ -42,5 +43,7 @@ offer.pub: 'Offres promotionnelles'
 offer.today: 'Offres du jour'
 'Brand Store': Marques
 'New offers': 'Nouvelles offres'
-view_list.item_per_page: %number% articles par pages
+view_list.item_per_page: '%number% articles par pages'
 search.title: Rechercher
+Logout: 'Se déconnecter'
+Profile: Profil
