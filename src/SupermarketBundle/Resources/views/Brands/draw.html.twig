@@ -1,0 +1,19 @@
+<!--brands-->
+<div class="brands">
+    <div class="container">
+        <h3>{{ 'Brand Store'|trans }}</h3>
+        <div class="brands-agile">
+            {% for key, brand in brands %}
+                <div class="col-md-4 w3layouts-brand" style="margin-bottom: 10px">
+                    <div class="brands-w3l">
+                        <p><a href="#">{{ brand.name }}</a></p>
+                    </div>
+                </div>
+                {% if (key + 1) is divisible by(3) %}
+                    <div class="clearfix"></div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!--//brands-->

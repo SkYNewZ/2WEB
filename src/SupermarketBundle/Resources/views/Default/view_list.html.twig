@@ -1,0 +1,62 @@
+<div class="products">
+    <div class="container">
+        {{ render(controller('SupermarketBundle:Categories:side')) }}
+        <div class="col-md-8 products-right">
+            {% for key,arti in articles %}
+                <div class="agile_top_brands_grids">
+                    <div class="col-md-4 top_brand_left">
+                        <div class="hover14 column">
+                            <div class="agile_top_brand_left_grid">
+                                <div class="agile_top_brand_left_grid_pos">
+                                    <img src="{{ asset('bundles/supermarket//images/offer.png') }}" alt=" "
+                                         class="img-responsive">
+                                </div>
+                                <div class="agile_top_brand_left_grid1">
+                                    <figure>
+                                        <div class="snipcart-item block">
+                                            <div class="snipcart-thumb" style="height: 290PX">
+                                                <a href="{{ path('single', { 'id': arti.id }) }}">
+                                                    <img title="{{ arti.name }}" alt="{{ arti.name }}" src="{{ arti.media.images.0.smallUrl }}">
+                                                </a>
+                                                <p>{{ arti.name }}</p>
+                                                <h4>
+                                                    {{ arti.units.0.price.formatted }}
+                                                    {% if arti.units.0.originalPrice.formatted and arti.units.0.price.formatted != arti.units.0.originalPrice.formatted %}
+                                                        <span>{{ arti.units.0.originalPrice.formatted }}</span>
+                                                    {% endif %}
+                                                </h4>
+                                            </div>
+                                            <div class="snipcart-details top_brand_home_details">
+                                                <form action="#" method="post">
+                                                    <fieldset>
+                                                        <input type="hidden" name="cmd" value="_cart">
+                                                        <input type="hidden" name="add" value="1">
+                                                        <input type="hidden" name="business" value=" ">
+                                                        <input type="hidden" name="item_name"
+                                                               value="Fortune Sunflower Oil">
+                                                        <input type="hidden" name="amount" value="35.99">
+                                                        <input type="hidden" name="discount_amount"
+                                                               value="1.00">
+                                                        <input type="hidden" name="currency_code" value="USD">
+                                                        <input type="hidden" name="return" value=" ">
+                                                        <input type="hidden" name="cancel_return" value=" ">
+                                                        <input type="submit" name="submit" value="Add to cart"
+                                                               class="button">
+                                                    </fieldset>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if (key + 1) is divisible by(3) %}
+                    <div class="clearfix"></div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>

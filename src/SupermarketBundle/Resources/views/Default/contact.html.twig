@@ -1,0 +1,42 @@
+{% extends 'SupermarketBundle::layout.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block breadcrumbs_title %}{{ parent() }}
+	<li class="active">{{ 'contact.contact'|trans }}</li>
+{% endblock %}
+
+{% block body %}
+<!-- contact -->
+	<div class="about">
+		<div class="w3_agileits_contact_grids">
+			<div class="col-md-6 w3_agileits_contact_grid_left">
+				<div class="agile_map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d326556.5520535314!2d3.0219805455237596!3d50.250418050399176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2edc3ef7fc943%3A0xd8d1c83d483dacff!2sSUPINFO!5e0!3m2!1sfr!2sfr!4v1494737902082" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+				</div>
+			</div>
+			<div class="col-md-6 w3_agileits_contact_grid_right">
+				<h2 class="w3_agile_header">{{ 'contact.title'|trans }}</h2>
+
+				<form action="#" method="post">
+					<span class="input input--ichiro">
+						<input class="input__field input__field--ichiro" type="text" id="input-25" name="Name" placeholder=" " required="" />
+						<label class="input__label input__label--ichiro" for="input-25">
+							<span class="input__label-content input__label-content--ichiro">{{ 'contact.name'|trans }}</span>
+						</label>
+					</span>
+					<span class="input input--ichiro">
+						<input class="input__field input__field--ichiro" type="email" id="input-26" name="Email" placeholder=" " required="" />
+						<label class="input__label input__label--ichiro" for="input-26">
+							<span class="input__label-content input__label-content--ichiro">{{ 'contact.mail'|trans }}</span>
+						</label>
+					</span>
+					<textarea name="Message" placeholder="{{ 'contact.messages'|trans }}" required=""></textarea>
+					<input type="submit" value="{{ 'contact.submit'|trans }}">
+				</form>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- contact -->
+{% endblock %}

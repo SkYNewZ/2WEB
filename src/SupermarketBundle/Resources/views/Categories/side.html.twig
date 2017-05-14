@@ -1,0 +1,19 @@
+<div class="col-md-4 products-left">
+    <div class="categories">
+        <h2>{{ 'Categories'|trans }}</h2>
+        <ul class="cate">
+            {% for category in categories %}
+            <li><a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i>{{ category.name }}</a></li>
+            <ul>
+                {% for key, submenu in category.childKeys %}
+                <li>
+                    <a href="{{ path('category', { 'name': key }) }}">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i>{{ submenu }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

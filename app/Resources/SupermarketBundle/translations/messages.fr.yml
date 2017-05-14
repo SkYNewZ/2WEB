@@ -1,0 +1,44 @@
+Home: Accueil
+All: Tout
+Contact: Contact
+Categories: Catégories
+'Create Account': 'S''enregistrer'
+Login: 'Se connecter'
+Help: Aide
+'Search for a Product': 'Rechercher un produit'
+slider.message1: 'Supermarket, par Quentin Lemaire'
+slider.message2: Bienvenue
+slider.message3: Supermarket
+footer.about_us: 'A propos'
+footer.contact_us: 'Contacter nous'
+footer.profile: Profil
+footer.category: Catégories
+footer.store: Magasin
+footer.my_cart: 'Mon panier'
+article.add_cart: 'Ajouter au panier'
+footer.copyrights: '© 2017 Super Market. Tous droits réservés | Design par'
+contact.contact: 'Formulaire de contact'
+checkout.title: 'Mon panier'
+checout.contains: 'Votre panier contient'
+checkout.product_contains: produits
+checkout.photo: Article
+checkout.quantity: Quantité
+checkout.product_name: Nom
+checkout.price: Prix
+checkout.remove: Supprimer
+checkout.continue_checkout: Continuer
+checkout.frais_total: 'Frais total'
+checkout.continue_shopping: 'Retourner au magasin'
+contact.title: 'Laissez nous un message'
+contact.name: Nom
+contact.mail: 'Address E-mail'
+contact.messages: 'Votre message'
+contact.submit: Envoyer
+store.title: Magasin
+article.brand: Marque
+article.available: Disponibilité
+index.top_selling: 'Meilleures ventes'
+offer.pub: 'Offres promotionnelles'
+offer.today: 'Offres du jour'
+'Brand Store': 'Marques'
+'New offers': 'Nouvelles offres'

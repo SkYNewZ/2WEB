@@ -1,0 +1,189 @@
+{% trans_default_domain 'messages' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Supermarket{% endblock %}</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
+    <!-- //for-mobile-apps -->
+    <link href="{{ asset('bundles/supermarket/css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all"/>
+    <link href="{{ asset('bundles/supermarket/css/style.css') }}" rel="stylesheet" type="text/css" media="all"/>
+    <!-- font-awesome icons -->
+    <link href="{{ asset('bundles/supermarket/css/font-awesome.css') }}" rel="stylesheet">
+    <!-- //font-awesome icons -->
+    <!-- js -->
+    <script src="{{ asset('bundles/supermarket/js/jquery-1.11.1.min.js') }}"></script>
+    <!-- //js -->
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic'
+          rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="{{ asset('bundles/supermarket/js/move-top.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/supermarket/js/easing.js') }}"></script>
+    <!-- start-smoth-scrolling -->
+</head>
+<body>
+<!-- header -->
+<div class="agileits_header">
+    <div class="container">
+        <div class="w3l_offers">
+            <p>Lemaire Quentin - 214520</p>
+        </div>
+        <div class="agile-login">
+            <ul>
+                <li><a href="registered.html"> {{ 'Create Account'|trans }} </a></li>
+                <li><a href="login.html">{{ 'Login'|trans }}</a></li>
+                <li><a href="{{ path('contact') }}">{{ 'Help'|trans }}</a></li>
+
+            </ul>
+        </div>
+        <div class="product_list_header">
+            <form action="{{ path('checkout') }}" method="post" class="last">
+                <input type="hidden" name="cmd" value="_cart">
+                <input type="hidden" name="display" value="1">
+                <button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down"
+                                                                                    aria-hidden="true"></i></button>
+            </form>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<div class="logo_products">
+    <div class="container">
+        <div class="w3ls_logo_products_left1">
+            <ul class="phone_email">
+                <li><i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:quentin.lemaire@supinfo.com">quentin.lemaire@supinfo.com</a></li>
+
+            </ul>
+        </div>
+        <div class="w3ls_logo_products_left">
+            <h1><a href="{{ path('homepage') }}">super Market</a></h1>
+        </div>
+        <div class="w3l_search">
+            <form action="#" method="post">
+                <input type="search" name="Search" placeholder="{{ 'Search for a Product'|trans }}..." required="">
+                <button type="submit" class="btn btn-default search" aria-label="Left Align">
+                    <i class="fa fa-search" aria-hidden="true"> </i>
+                </button>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- //header -->
+<!-- navigation -->
+{{ render(controller('SupermarketBundle:Categories:draw')) }}
+
+<!-- //navigation -->
+<!-- main-slider -->
+<ul id="demo1">
+    <li>
+        <img src="{{ asset('bundles/supermarket/images/11.jpg') }}" alt=""/>
+        <!--Slider Description example-->
+        <div class="slide-desc">
+            <h3>{{ 'slider.message1'|trans }}</h3>
+        </div>
+    </li>
+    <li>
+        <img src="{{ asset('bundles/supermarket/images/22.jpg') }}" alt=""/>
+        <div class="slide-desc">
+            <h3>{{ 'slider.message2'|trans }}</h3>
+        </div>
+    </li>
+
+    <li>
+        <img src="{{ asset('bundles/supermarket/images/44.jpg') }}" alt=""/>
+        <div class="slide-desc">
+            <h3>{{ 'slider.message3'|trans }}</h3>
+        </div>
+    </li>
+</ul>
+<!-- //main-slider -->
+<!-- //top-header and slider -->
+{% block breadcrumbs %}{% endblock %}
+{% block body %}{% endblock %}
+<!-- //footer -->
+<div class="footer">
+    <div class="container">
+        <div class="w3_footer_grids">
+            <div class="col-md-3 w3_footer_grid">
+                <h3>Contact</h3>
+
+                <ul class="address">
+                    <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>1234k Avenue, 4th block,
+                        <span>New York City.</span>
+                    </li>
+                    <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a
+                                href="mailto:quentin.lemaire@supinfo.com">quentin.lemaire@supinfo.com</a></li>
+                    <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+1234 567 567</li>
+                </ul>
+            </div>
+            <div class="col-md-3 w3_footer_grid">
+                <h3>Information</h3>
+                <ul class="info">
+                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">{{ 'footer.about_us'|trans }}</a></li>
+                    <li>
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{ path('contact') }}">{{ 'footer.contact_us'|trans }}</a>
+                    </li>
+                </ul>
+            </div>
+            {{ render(controller('SupermarketBundle:Categories:footer')) }}
+            <div class="col-md-3 w3_footer_grid">
+                <h3>{{ 'footer.profile'|trans }}</h3>
+                <ul class="info">
+                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{ path('magasin') }}">{{ 'footer.store'|trans }}</a></li>
+                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{ path('checkout') }}">{{ 'footer.my_cart'|trans }}</a></li>
+                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.html">{{ 'Login'|trans }}</a></li>
+                    <li>
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        <a href="registered.html">{{ 'Create Account'|trans }}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div class="footer-copy">
+
+        <div class="container">
+            <p>{{ 'footer.copyrights'|trans }} <a href="http://w3layouts.com/">W3layouts</a>
+            </p>
+        </div>
+    </div>
+
+</div>
+<div class="footer-botm">
+    <div class="container">
+        <div class="w3layouts-foot">
+            <ul>
+                <li><a href="#" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="#" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li><a href="#" class="w3_agile_dribble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                <li><a href="#" class="w3_agile_vimeo"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+            </ul>
+        </div>
+        <div class="payment-w3ls">
+            <img src="{{ asset('bundles/supermarket/images/card.png') }}" alt=" "
+                 class="img-responsive">
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- //footer -->
+<script src="{{ asset('bundles/supermarket/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('bundles/supermarket/js/minicart.min.js') }}"></script>
+<!-- main slider-banner -->
+<script src="{{ asset('bundles/supermarket/js/skdslider.min.js') }}"></script>
+<script src="{{ asset('bundles/supermarket/js/custom.js') }}"></script>
+<link href="{{ asset('bundles/supermarket/css/skdslider.css') }}" rel="stylesheet">
+<!-- //main slider-banner -->
+</body>
+</html>

@@ -1,0 +1,7 @@
+services:
+#    supermarket.example:
+#        class: SupermarketBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    supermarket.api:
+        class: SupermarketBundle\Service\API
+        arguments: ["@circle.restclient"]

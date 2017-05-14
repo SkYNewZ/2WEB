@@ -1,0 +1,10 @@
+<div class="col-md-3 w3_footer_grid">
+    <h3>{{ 'footer.category'|trans }}</h3>
+    <ul class="info">
+        {% for cat in categories %}
+        <li>
+            <i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">{{ cat.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

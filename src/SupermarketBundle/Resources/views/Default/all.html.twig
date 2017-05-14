@@ -1,0 +1,13 @@
+{% extends 'SupermarketBundle::layout.html.twig' %}
+
+{% block title %}{{ 'store.title'|trans }}{% endblock %}
+
+{% block breadcrumbs_title %}{{ parent() }}
+<li class="active">{{ 'store.title'|trans }}</li>
+{% endblock %}
+
+{% block body %}
+<!--- products --->
+    {{ include('SupermarketBundle:Default:view_list.html.twig') }}
+<!--- products --->
+{% endblock %}

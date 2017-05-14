@@ -1,0 +1,23 @@
+homepage:
+    path:     /
+    defaults: { _controller: SupermarketBundle:Default:index }
+
+category:
+    path:     /category/{name}
+    defaults: { _controller: SupermarketBundle:Articles:show }
+
+single:
+    path:     /single/{id}
+    defaults: { _controller: SupermarketBundle:Articles:single }
+
+contact:
+    path:     /contact
+    defaults: { _controller: SupermarketBundle:Default:contact }
+
+checkout:
+    path:     /checkout
+    defaults: { _controller: SupermarketBundle:Default:checkout }
+
+magasin:
+    path:     /magasin
+    defaults: { _controller: SupermarketBundle:Articles:allProducts}
