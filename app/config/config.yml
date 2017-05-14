@@ -75,3 +75,4 @@ circle_rest_client:
       defaults:
         CURLOPT_HTTPHEADER:     ['Accept-Language: fr-FR,fr;Content-Type: application/json;charset=UTF-8' ]
         CURLOPT_FOLLOWLOCATION: true
+        CURLOPT_TIMEOUT: 20

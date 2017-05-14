@@ -1,9 +1,9 @@
 {% extends 'SupermarketBundle::layout.html.twig' %}
 
-{% block title %}{{ name }}{% endblock %}
+{% block title %}{{app.request.get('name')}}{% endblock %}
 
 {% block breadcrumbs_title %}{{ parent() }}
-    <li class="active">{{ name }}</li>
+    <li class="active">{{app.request.get('name')}}</li>
 {% endblock %}
 
 {% block body %}

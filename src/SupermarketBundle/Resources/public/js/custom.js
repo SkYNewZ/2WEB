@@ -49,3 +49,7 @@ $(document).ready(function () {
     }
 
 });
+
+function changePageSize(url, size) {
+    window.location = url + '?size=' + size;
+}

@@ -2,6 +2,18 @@
     <div class="container">
         {{ render(controller('SupermarketBundle:Categories:side')) }}
         <div class="col-md-8 products-right">
+            <div class="products-right-grid">
+                <div class="products-right-grids">
+                    <div class="sorting">
+                        <select id="country1" onchange="changePageSize('{{ path(app.request.attributes.get("_route"), {'name': app.request.get('name')}) }}', this.value)" class="frm-field required sect">
+                                <option value="25">Item on page 25</option>
+                                <option value="50">Item on page 50</option>
+                                <option value="100">Item on page 100</option>
+                            </select>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
             {% for key,arti in articles %}
                 <div class="agile_top_brands_grids">
                     <div class="col-md-4 top_brand_left">
@@ -16,7 +28,8 @@
                                         <div class="snipcart-item block">
                                             <div class="snipcart-thumb" style="height: 290PX">
                                                 <a href="{{ path('single', { 'id': arti.id }) }}">
-                                                    <img title="{{ arti.name }}" alt="{{ arti.name }}" src="{{ arti.media.images.0.smallUrl }}">
+                                                    <img title="{{ arti.name }}" alt="{{ arti.name }}"
+                                                         src="{{ arti.media.images.0.smallUrl }}">
                                                 </a>
                                                 <p>{{ arti.name }}</p>
                                                 <h4>
@@ -57,6 +70,42 @@
                 {% endif %}
             {% endfor %}
         </div>
-        <div class="clearfix"> </div>
+        <nav class="numbering">
+            <ul class="pagination paging">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">«</span>
+                    </a>
+                </li>
+                {% if app.request.attributes.get("_route") == 'magasin' %}
+                    <li class="active"><a href="{{ path(app.request.attributes.get("_route"), {'page' : 1}) }}">1<span
+                                    class="sr-only">(current)</span></a></li>
+                    {% for i in 0..10 %}
+                        {% if not i == 0 %}
+                            <li>
+                                <a href="{{ path(app.request.attributes.get("_route"), {'page' : i + 1}) }}">{{ i + 1 }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <li class="active"><a
+                                href="{{ path(app.request.attributes.get("_route"), {'page' : 1, 'name' : app.request.get('name')}) }}">1<span
+                                    class="sr-only">(current)</span></a></li>
+                    {% for i in 0..10 %}
+                        {% if not i == 0 %}
+                            <li>
+                                <a href="{{ path(app.request.attributes.get("_route"), {'page' : i + 1, 'name' : app.request.get('name')}) }}">{{ i + 1 }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="clearfix"></div>
     </div>
 </div>

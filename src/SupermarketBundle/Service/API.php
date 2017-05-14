@@ -56,10 +56,12 @@ class API extends Controller{
 		return $catalogue;
 	}
 
-	public function getArticlesList($category){
+	public function getArticlesList($category, $page, $size){
 		$articles = $this->getHTTP(
 			'https://api.zalando.com/articles', array(
 				'category' => $category,
+				'pageSize' => $size,
+				'page' => $page,
 		))->content;
 		return $articles;
 	}
@@ -75,9 +77,11 @@ class API extends Controller{
 		return $this->GetHTTP('https://api.zalando.com/articles/'.$id, array());
 	}
 
-	public function getAllArticle(){
+	public function getAllArticle($page, $size){
 		return $this->GetHTTP('https://api.zalando.com/articles/', array(
-				'pageSize' => '50')
+			'pageSize' => $size,
+			'page' => $page,
+			)
 		)->content;
 	}
 

@@ -19,5 +19,5 @@ checkout:
     defaults: { _controller: SupermarketBundle:Default:checkout }
 
 magasin:
-    path:     /magasin
+    path:     /magasin/
     defaults: { _controller: SupermarketBundle:Articles:allProducts}
