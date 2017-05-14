@@ -21,3 +21,7 @@ checkout:
 magasin:
     path:     /magasin/
     defaults: { _controller: SupermarketBundle:Articles:allProducts}
+
+search:
+    path:     /search
+    defaults: { _controller: SupermarketBundle:Articles:search}

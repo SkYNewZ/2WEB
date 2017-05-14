@@ -40,5 +40,7 @@ article.available: Disponibilité
 index.top_selling: 'Meilleures ventes'
 offer.pub: 'Offres promotionnelles'
 offer.today: 'Offres du jour'
-'Brand Store': 'Marques'
+'Brand Store': Marques
 'New offers': 'Nouvelles offres'
+view_list.item_per_page: %number% articles par pages
+search.title: Rechercher

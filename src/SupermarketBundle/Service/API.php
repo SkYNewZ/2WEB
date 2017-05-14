@@ -14,12 +14,25 @@ class API extends Controller{
 
 	protected $client;
 
+	/**
+	 * API constructor.
+	 *
+	 * @param $client
+	 */
 	public function __construct($client)
 	{
 		$this->client = $client;
 	}
 
 
+	/**
+	 * Do request
+	 * @param $url
+	 * @param $params
+	 *
+	 * @return mixed
+	 * @throws \Exception
+	 */
 	private function getHTTP($url, $params){
 		try {
 			return json_decode($this->client
@@ -30,6 +43,10 @@ class API extends Controller{
 		}
 	}
 
+	/**
+	 * Get menu categories
+	 * @return mixed
+	 */
 	public function getMenu(){
 		$catalogue = $this->getHTTP(
 			'https://api.zalando.com/categories', array(
@@ -39,6 +56,10 @@ class API extends Controller{
 		return $catalogue;
 	}
 
+	/**
+	 * Get sub menu categories + menu
+	 * @return mixed
+	 */
 	public function getSubMenu(){
 		$catalogue = $this->getMenu()->content;
 		foreach($catalogue as $first){
@@ -56,6 +77,14 @@ class API extends Controller{
 		return $catalogue;
 	}
 
+	/**
+	 * Get article list by category
+	 * @param $category
+	 * @param $page
+	 * @param $size
+	 *
+	 * @return mixed
+	 */
 	public function getArticlesList($category, $page, $size){
 		$articles = $this->getHTTP(
 			'https://api.zalando.com/articles', array(
@@ -66,6 +95,10 @@ class API extends Controller{
 		return $articles;
 	}
 
+	/**
+	 * Get brands
+	 * @return mixed
+	 */
 	public function getBrands(){
 		return $this->GetHTTP(
 			'https://api.zalando.com/brands', array(
@@ -73,16 +106,38 @@ class API extends Controller{
 		)->content;
 	}
 
+	/**
+	 * Get one product
+	 * @param $id
+	 *
+	 * @return mixed
+	 */
 	public function getOneArticle($id){
 		return $this->GetHTTP('https://api.zalando.com/articles/'.$id, array());
 	}
 
+	/**
+	 * Get all article
+	 * @param $page
+	 * @param $size
+	 *
+	 * @return mixed
+	 */
 	public function getAllArticle($page, $size){
 		return $this->GetHTTP('https://api.zalando.com/articles/', array(
 			'pageSize' => $size,
 			'page' => $page,
 			)
 		)->content;
+	}
+
+	public function searchProducts($search, $page = 1, $size = 25){
+		return $this->getHTTP('https://api.zalando.com/articles/', array(
+			'fullText' => $search,
+			'pageSize' => $size,
+			'page' => $page
+		))->content;
+
 	}
 
 }

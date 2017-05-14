@@ -53,3 +53,7 @@ $(document).ready(function () {
 function changePageSize(url, size) {
     window.location = url + '?size=' + size;
 }
+
+function changePageTri(url, tri) {
+    window.location = url + '?size=' + size;
+}

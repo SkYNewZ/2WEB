@@ -4,11 +4,19 @@
         <div class="col-md-8 products-right">
             <div class="products-right-grid">
                 <div class="products-right-grids">
-                    <div class="sorting">
+                    {#<div class="sorting">
+                        <select id="country" onchange="change_country(this.value)" class="frm-field required sect">
+                            <option value="null">Default sorting</option>
+                            <option value="null">Sort by popularity</option>
+                            <option value="null">Sort by average rating</option>
+                            <option value="null">Sort by price</option>
+                        </select>
+                    </div>#}
+                    <div class="sorting-left">
                         <select id="country1" onchange="changePageSize('{{ path(app.request.attributes.get("_route"), {'name': app.request.get('name')}) }}', this.value)" class="frm-field required sect">
-                                <option value="25">Item on page 25</option>
-                                <option value="50">Item on page 50</option>
-                                <option value="100">Item on page 100</option>
+                                <option value="25">{{ 'view_list.item_per_page'|trans({'%number%': 25}) }}</option>
+                                <option value="50">{{ 'view_list.item_per_page'|trans({'%number%': 50}) }}</option>
+                                <option value="100">{{ 'view_list.item_per_page'|trans({'%number%': 100}) }}</option>
                             </select>
                     </div>
                     <div class="clearfix"></div>
