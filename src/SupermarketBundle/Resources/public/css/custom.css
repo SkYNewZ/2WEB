@@ -3,3 +3,7 @@
     width: 15%;
     text-align: center
 }
+
+.history td{
+    vertical-align: middle !important;
+}

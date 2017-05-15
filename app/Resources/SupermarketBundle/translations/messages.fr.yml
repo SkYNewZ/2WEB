@@ -84,6 +84,7 @@ history:
     pending: En attende de validation
     valid: Validée
     empty: Vous n'avez pas encore passée de commande.
+    picture: Photo
     modal:
         header: Détails de la commande
         name: Nom
@@ -94,3 +95,14 @@ confirm:
     title: Confirmation
     message: Votre commande est validée
     back: Retour au magasin
+
+
+admin:
+    title: Administration
+    user: Utilisateurs
+    valid: Valider
+    receipts:
+        pending: En attente
+        valid: Validé
+        validation: Validation
+        total: Toutes les commandes

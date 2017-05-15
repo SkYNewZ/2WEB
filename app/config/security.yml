@@ -30,3 +30,4 @@ security:
         - { path: ^/checkout/pay, role: ROLE_USER }
         - { path: ^/checkout/confirm, role: ROLE_USER }
         - { path: ^/history, role: ROLE_USER }
+        - { path: ^/backend, role: ROLE_ADMIN }

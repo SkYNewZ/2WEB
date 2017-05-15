@@ -2,6 +2,14 @@ homepage:
     path:     /
     defaults: { _controller: SupermarketBundle:Default:index }
 
+backend:
+    path:     /backend
+    defaults: { _controller: SupermarketBundle:Backend:index }
+
+backend_valid:
+    path:     /backend/valid
+    defaults: { _controller: SupermarketBundle:Backend:valid }
+
 category:
     path:     /category/{name}
     defaults: { _controller: SupermarketBundle:Articles:show }

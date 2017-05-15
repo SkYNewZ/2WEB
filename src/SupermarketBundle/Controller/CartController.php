@@ -128,27 +128,29 @@ class CartController extends Controller {
 	public function confirmAction(){
 		$session  = new Session();
 		$products = $session->get( 'product' );
-		$api      = $this->container->get( 'supermarket.api' );
-		$articles = array();
-		if ($session->get( 'product' ) != null){
-			foreach ( $products as $prod ) {
-				array_push( $articles, $api->getOneArticle( $prod['id'] ) );
+		if (isset($products)){
+			$api      = $this->container->get( 'supermarket.api' );
+			$articles = array();
+			if ($session->get( 'product' ) != null){
+				foreach ( $products as $prod ) {
+					array_push( $articles, $api->getOneArticle( $prod['id'] ) );
+				}
+				for ( $i = 0; $i < count( $articles ); $i ++ ) {
+					$articles[ $i ]->season = $products[ $i ]['quantity'];
+				}
 			}
-			for ( $i = 0; $i < count( $articles ); $i ++ ) {
-				$articles[ $i ]->season = $products[ $i ]['quantity'];
-			}
+			$receipt = new Receipts();
+			$receipt->setDate(time());
+			$receipt->setValidate(0);
+			$receipt->setUserId($this->getUser()->getId());
+			$receipt->setBilling($this->getUser()->getBilling());
+			$receipt->setDelivery($this->getUser()->getDelivery());
+			$receipt->setContent(json_encode($articles));
+			$em    = $this->getDoctrine()->getManager();
+			$em->persist( $receipt);
+			$em->flush();
+			$session->clear();
 		}
-		$receipt = new Receipts();
-		$receipt->setDate(time());
-		$receipt->setValidate(0);
-		$receipt->setUserId($this->getUser()->getId());
-		$receipt->setBilling($this->getUser()->getBilling());
-		$receipt->setDelivery($this->getUser()->getDelivery());
-		$receipt->setContent(json_encode($articles));
-		$em    = $this->getDoctrine()->getManager();
-		$em->persist( $receipt);
-		$em->flush();
-		$session->clear();
 		return $this->render('SupermarketBundle:Default:confirm.html.twig');
 	}
 

@@ -1,0 +1,24 @@
+{% extends 'SupermarketBundle:Admin:base.html.twig' %}
+
+{% block body %}
+    <!--/content-inner-->
+    <div class="left-content">
+    <div class="mother-grid-inner">
+        <!--four-grids here-->
+        <div class="four-grids">
+            {{ render(controller('SupermarketBundle:Backend:getUser')) }}
+            {{ render(controller('SupermarketBundle:Backend:get', {'route' : 'SupermarketBundle:Admin:pending.html.twig', 'key' : 0})) }}
+            {{ render(controller('SupermarketBundle:Backend:get', {'route' : 'SupermarketBundle:Admin:valid.html.twig', 'key' : 1})) }}
+            {{ render(controller('SupermarketBundle:Backend:getCountAll')) }}
+            <div class="clearfix"></div>
+        </div>
+        <!--//four-grids here-->
+        <!--agileinfo-grap-->
+        <div class="agileinfo-grap">
+            <div class="agileits-box">
+                {{ render(controller('SupermarketBundle:Backend:getAll')) }}
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+{% endblock body %}
