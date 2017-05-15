@@ -116,6 +116,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //top-header and slider -->
 {% block breadcrumbs %}{% endblock %}
 {% block body %}{% endblock %}
+<div id="hidden-content">
+    <p>{{ 'article.success'|trans }} !</p>
+    <a class="button" href="{{ path('checkout') }}">{{ 'article.cart'|trans }}</a>
+</div>
 <!-- //footer -->
 <div class="footer">
     <div class="container">

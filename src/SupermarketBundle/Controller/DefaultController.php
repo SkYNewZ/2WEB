@@ -22,7 +22,7 @@ class DefaultController extends Controller {
 
 	public function historyAction(){
 		$em    = $this->getDoctrine()->getManager();
-		$receipts = $em->getRepository( 'SupermarketBundle:Receipts' )->findAll();
+		$receipts = $em->getRepository( 'SupermarketBundle:Receipts' )->findBy(array('userId' => $this->getUser()->getId()));
 		foreach ($receipts as $receipt){
 			$receipt->setContent(json_decode($receipt->getContent()));
 		}
