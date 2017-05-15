@@ -98,9 +98,19 @@ confirm:
 
 
 admin:
+    nouser: Pas d'utilisateurs trouvés
+    results: Résults pour la recherche :
     title: Administration
     user: Utilisateurs
     valid: Valider
+    logout: Déconnexion
+    back: Retour au magasin
+    dashboard: Tableau de bord
+    search: Rechercher un utilisateur
+    user.first: Prénom
+    user.last: Nom
+    user.mail: Adresse E-mail
+    user.delivery: Addresse
     receipts:
         pending: En attente
         valid: Validé

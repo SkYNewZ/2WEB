@@ -10,6 +10,14 @@ backend_valid:
     path:     /backend/valid
     defaults: { _controller: SupermarketBundle:Backend:valid }
 
+backend_users:
+    path:     /backend/users
+    defaults: { _controller: SupermarketBundle:Backend:listUser }
+
+backend_search:
+    path:     /backend/search
+    defaults: { _controller: SupermarketBundle:Backend:search }
+
 category:
     path:     /category/{name}
     defaults: { _controller: SupermarketBundle:Articles:show }

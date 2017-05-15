@@ -1,0 +1,31 @@
+{% extends 'SupermarketBundle:Admin:index.html.twig' %}
+
+{% block content %}
+    {% if users|length > 0 %}
+        <table class="table table-responsive table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>{{ 'admin.user.last'|trans }}</th>
+                <th>{{ 'admin.user.first'|trans }}</th>
+                <th>{{ 'admin.user.mail'|trans }}</th>
+                <th>{{ 'admin.user.delivery'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr class="history">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.lastName }}</td>
+                    <td>{{ user.firstName }}</td>
+                    <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+                    <td>{{ user.delivery }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h3>{{ 'admin.results'|trans }} "{{app.request.query.get("query")}}"</h3>
+        <p>{{ 'admin.nouser'|trans }}</p>
+    {% endif %}
+{% endblock content %}

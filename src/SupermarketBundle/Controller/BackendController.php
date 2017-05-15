@@ -62,4 +62,22 @@ class BackendController extends Controller {
 		return $this->redirectToRoute('backend');
 	}
 
+	public function listUserAction(){
+		$em = $this->getDoctrine()->getManager();
+		$users = $em->getRepository('SupermarketBundle:User')->findAll();
+		return $this->render('SupermarketBundle:Admin:list_users.html.twig', array(
+			'users' => $users,
+		));
+	}
+
+	public function searchAction(Request $request){
+		$name = $request->query->get('query');
+		$em = $this->getDoctrine()->getManager();
+		$users = $em->getRepository('SupermarketBundle:User')->findBy(array('usernameCanonical' => mb_strtolower($name)));
+		return $this->render('SupermarketBundle:Admin:search.html.twig', array(
+			'users' => $users,
+		));
+
+	}
+
 }

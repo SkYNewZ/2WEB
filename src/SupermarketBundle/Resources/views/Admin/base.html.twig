@@ -62,21 +62,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
     <div class="menu">
         <ul id="menu">
-            <li><a href="index.html"><i class="fa fa-tachometer"></i> <span>Dashboard</span>
+            <li><a href="{{ path('backend') }}"><i class="fa fa-tachometer"></i> <span>{{ 'admin.dashboard'|trans }}</span>
                     <div class="clearfix"></div>
                 </a></li>
 
 
-            <li id="menu-academico"><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out nav_icon"></i><span>Logout</span>
+            <li id="menu-academico"><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out nav_icon"></i><span>{{ 'admin.logout'|trans }}</span>
                     <div class="clearfix"></div>
                 </a></li>
-            <li><a href="{{ path('homepage') }}"><i class="fa fa-undo" aria-hidden="true"></i><span>Back to site</span>
+            <li id="menu-academico"><a href="{{ path('backend_users') }}"><i class="fa fa-user"></i><span>{{ 'admin.user'|trans }}</span>
                     <div class="clearfix"></div>
                 </a></li>
-            <li id="menu-academico"><a href="#"><i class="fa fa-bar-chart"></i><span>Charts</span>
+            <li><a href="{{ path('homepage') }}"><i class="fa fa-undo" aria-hidden="true"></i><span>{{ 'admin.back'|trans }}</span>
                     <div class="clearfix"></div>
                 </a></li>
-            <li id="menu-academico"><a href="#"><i class="fa fa-list-ul"
+            <li style="width: 80%;margin: auto;">
+                <form action="{{ path('backend_search') }}" method="get">
+                    <input type="text" class="form-control" name="query" placeholder="{{ 'admin.search'|trans }}"/>
+                </form>
+            </li>
+            {#<li id="menu-academico"><a href="#"><i class="fa fa-list-ul"
                                                    aria-hidden="true"></i><span> Short Codes</span> <span
                             class="fa fa-angle-right" style="float: right"></span>
                     <div class="clearfix"></div>
@@ -127,7 +132,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li><a href="#"> Input</a></li>
                     <li><a href="#">Validation</a></li>
                 </ul>
-            </li>
+            </li>#}
         </ul>
     </div>
 </div>

@@ -61,7 +61,7 @@
                             </thead>
                             <tbody>
                             {% for article in receipt.content %}
-                                <tr>
+                                <tr class="history">
                                     <td>{{ article.id }}</td>
                                     <td><img src="{{ article.media.images.0.thumbnailHdUrl }}"/></td>
                                     <td><a href="{{ path('single', {'id': article.id }) }}">{{ article.name }}</a></td>
