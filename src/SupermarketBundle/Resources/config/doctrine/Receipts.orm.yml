@@ -1,0 +1,28 @@
+SupermarketBundle\Entity\Receipts:
+    type: entity
+    table: null
+    repositoryClass: SupermarketBundle\Repository\ReceiptsRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        validate:
+            type: integer
+        date:
+            type: integer
+        userId:
+            type: integer
+            column: user_id
+        delivery:
+            type: string
+            length: 255
+        billing:
+            type: string
+            length: 255
+        content:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
