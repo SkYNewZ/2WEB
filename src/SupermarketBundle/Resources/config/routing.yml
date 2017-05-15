@@ -18,6 +18,14 @@ checkout:
     path:     /checkout
     defaults: { _controller: SupermarketBundle:Cart:view }
 
+checkout_confirm:
+    path:     /checkout/pay
+    defaults: { _controller: SupermarketBundle:Cart:pay }
+
+checkout_pay:
+    path:     /checkout/confirm
+    defaults: { _controller: SupermarketBundle:Cart:confirm }
+
 magasin:
     path:     /magasin
     defaults: { _controller: SupermarketBundle:Articles:allProducts}
@@ -37,5 +45,9 @@ cart_delete:
 cart_update:
     path:     /cart/update/{id}/{number}
     defaults: { _controller: SupermarketBundle:Cart:update}
+
+history:
+    path:     /history
+    defaults: { _controller: SupermarketBundle:Default:history}
 
 

@@ -1,5 +1,7 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
+{% block title %}{{ 'Profile'|trans }}{% endblock %}
+
 {% block breadcrumbs_title %}{{ parent() }}
     <li class="active">{{ 'Profile'|trans }}</li>
 {% endblock %}

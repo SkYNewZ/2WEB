@@ -1,0 +1,91 @@
+{% extends 'SupermarketBundle::layout.html.twig' %}
+
+{% block title %}{{ 'pay.title'|trans }}{% endblock %}
+
+{% block breadcrumbs_title %}{{ parent() }}
+    <li class="active">{{ 'pay.title'|trans }}</li>
+{% endblock %}
+
+{% block body %}
+    <div class="checkout">
+        {% if articles|length > 0 %}
+            <div class="container">
+                <div class="row">
+                    <div class="well col-xs-10 col-sm-10 col-md-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-2">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <address style="max-width: 210px;">
+                                    <strong>{{ app.user.firstName }} {{ app.user.lastName }}</strong>
+                                    <br>
+                                    <br>
+                                    <strong>{{ 'pay.delivery'|trans }}</strong>
+                                    <br>
+                                    {{ app.user.delivery }}
+                                    <br>
+                                    <strong>{{ 'pay.billing'|trans }}</strong>
+                                    <br>
+                                    {{ app.user.billing }}
+                                </address>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 text-right">
+                                <p>
+                                    <em>Date: {{ "now"|date("d/m/Y H:i") }}</em>
+                                </p>
+                                <p>
+                                    <em>{{ 'pay.numer'|trans }} #: {{ random(500) }} </em>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="text-center">
+                                <h1>{{ 'pay.receipt'|trans }}</h1>
+                            </div>
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>{{ 'pay.product'|trans }}</th>
+                                    <th>{{ 'pay.quantity'|trans }}</th>
+                                    <th class="text-center">{{ 'pay.price'|trans }}</th>
+                                    <th class="text-center">Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {# GENERATE LISTE HERE#}
+                                {% set total = 0 %}
+                                {% for article in articles %}
+                                    {% set total = total + article.season * article.units.0.price.formatted %}
+                                    <tr>
+                                        <td class="col-md-9"><em>{{ article.name }}</em></td>
+                                        <td class="col-md-1" style="text-align: center"> {{ article.season }} </td>
+                                        <td class="col-md-1 text-center">{{ article.units.0.price.formatted }}</td>
+                                        <td class="col-md-1 text-center">{{ article.season * article.units.0.price.formatted }}
+                                            €
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                {# GENERATE LISTE HERE#}
+                                <tr></tr>
+                                <tr>
+                                    <td>  </td>
+                                    <td>  </td>
+                                    <td class="text-right"><h4><strong>Total: </strong></h4></td>
+                                    <td class="text-center text-danger"><h5><strong>{{ total }} €</strong></h5></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <a type="button" class="btn btn-lg btn-block" href="{{ path('checkout_pay') }}">
+                                {{ 'pay.pay'|trans }}   <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="container">
+                <div class="row">
+                    <p>{{ 'history.empty'|trans }}</p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

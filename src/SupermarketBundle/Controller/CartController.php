@@ -9,6 +9,7 @@
 namespace SupermarketBundle\Controller;
 
 
+use SupermarketBundle\Entity\Receipts;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -103,6 +104,52 @@ class CartController extends Controller {
 		return $this->render( 'SupermarketBundle:Default:checkout.html.twig', array(
 			'articles' => $articles,
 		) );
+	}
+
+	public function payAction(){
+		$session  = new Session();
+		/*$session->clear();*/
+		$products = $session->get( 'product' );
+		$api      = $this->container->get( 'supermarket.api' );
+		$articles = array();
+		if ($session->get( 'product' ) != null){
+			foreach ( $products as $prod ) {
+				array_push( $articles, $api->getOneArticle( $prod['id'] ) );
+			}
+			for ( $i = 0; $i < count( $articles ); $i ++ ) {
+				$articles[ $i ]->season = $products[ $i ]['quantity'];
+			}
+		}
+		return $this->render('SupermarketBundle:Default:pay.html.twig', array(
+			'articles' => $articles,
+		));
+	}
+
+	public function confirmAction(){
+		$session  = new Session();
+		$products = $session->get( 'product' );
+		$api      = $this->container->get( 'supermarket.api' );
+		$articles = array();
+		if ($session->get( 'product' ) != null){
+			foreach ( $products as $prod ) {
+				array_push( $articles, $api->getOneArticle( $prod['id'] ) );
+			}
+			for ( $i = 0; $i < count( $articles ); $i ++ ) {
+				$articles[ $i ]->season = $products[ $i ]['quantity'];
+			}
+		}
+		$receipt = new Receipts();
+		$receipt->setDate(time());
+		$receipt->setValidate(0);
+		$receipt->setUserId($this->getUser()->getId());
+		$receipt->setBilling($this->getUser()->getBilling());
+		$receipt->setDelivery($this->getUser()->getDelivery());
+		$receipt->setContent(json_encode($articles));
+		$em    = $this->getDoctrine()->getManager();
+		$em->persist( $receipt);
+		$em->flush();
+		$session->clear();
+		return $this->render('SupermarketBundle:Default:confirm.html.twig');
 	}
 
 }

@@ -63,11 +63,11 @@ $('#add-to-cart').on('submit', function(e) {
     $.ajax({
         url: $(this).attr('action'), // Le nom du fichier indiqué dans le formulaire
         type: $(this).attr('method'), // La méthode indiquée dans le formulaire (get ou post)
-        data: $(this).serialize()//, Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
-        /*success: function(html) { // Je récupère la réponse du fichier PHP
-            alert(html); // J'affiche cette réponse
-        }*/
+        data: $(this).serialize(),//, Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
+        success: function(html) { // Je récupère la réponse du fichier PHP
+            $.fancybox.open({
+                src  : '#hidden-content'
+            })
+        }
     });
-
-
 });

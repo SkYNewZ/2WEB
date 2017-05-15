@@ -3,42 +3,11 @@ All: Tout
 Contact: Contact
 Categories: Catégories
 'Create Account': 'S''enregistrer'
-Edit profile: Editer le profil
+'Edit profile': 'Editer le profil'
 Login: 'Se connecter'
 Help: Aide
 'Search for a Product': 'Rechercher un produit'
-slider.message1: 'Supermarket, par Quentin Lemaire'
-slider.message2: Bienvenue
-slider.message3: Supermarket
-footer.about_us: 'A propos'
-footer.contact_us: 'Contacter nous'
-footer.profile: Profil
-footer.category: Catégories
-footer.store: Magasin
-footer.my_cart: 'Mon panier'
-article.add_cart: 'Ajouter au panier'
-footer.copyrights: '© 2017 Super Market. Tous droits réservés | Design par'
-contact.contact: 'Formulaire de contact'
-checkout.title: 'Mon panier'
-checout.contains: 'Votre panier contient'
-checkout.product_contains: produits
-checkout.photo: Article
-checkout.quantity: Quantité
-checkout.product_name: Nom
-checkout.price: Prix
-checkout.remove: Supprimer
-checkout.empty: Vous n'avez pas ajouté d'article à votre panier.
-checkout.continue_checkout: Continuer
-checkout.frais_total: 'Frais total'
-checkout.continue_shopping: 'Retourner au magasin'
-contact.title: 'Laissez nous un message'
-contact.name: Nom
-contact.mail: 'Address E-mail'
-contact.messages: 'Votre message'
-contact.submit: Envoyer
 store.title: Magasin
-article.brand: Marque
-article.available: Disponibilité
 index.top_selling: 'Meilleures ventes'
 offer.pub: 'Offres promotionnelles'
 offer.today: 'Offres du jour'
@@ -48,3 +17,80 @@ view_list.item_per_page: '%number% articles par pages'
 search.title: Rechercher
 Logout: 'Se déconnecter'
 Profile: Profil
+
+
+slider:
+    message1: 'Supermarket, par Quentin Lemaire'
+    message2: Bienvenue
+    message3: Supermarket
+
+footer:
+    about_us: 'A propos'
+    history: Historique de commandes
+    contact_us: 'Contacter nous'
+    profile: Profil
+    category: Catégories
+    store: Magasin
+    my_cart: 'Mon panier'
+    copyrights: '© 2017 Super Market. Tous droits réservés | Design par'
+
+checkout:
+    title: 'Mon panier'
+    contains: 'Votre panier contient'
+    product_contains: produits
+    photo: Article
+    quantity: Quantité
+    product_name: Nom
+    price: Prix
+    remove: Supprimer
+    empty: 'Vous n''avez pas ajouté d''article à votre panier.'
+    continue_checkout: Continuer
+    frais_total: 'Frais total'
+    continue_shopping: 'Retourner au magasin'
+
+article:
+    add_cart: 'Ajouter au panier'
+    brand: Marque
+    available: Disponibilité
+    success: 'Article ajouté avec succès'
+    cart: 'Voir mon panier'
+
+contact:
+    contact: 'Formulaire de contact'
+    title: 'Laissez nous un message'
+    name: Nom
+    mail: 'Address E-mail'
+    messages: 'Votre message'
+    submit: Envoyer
+
+pay:
+    delivery: 'Adresse de livraison'
+    billing: 'Adresse de facturation'
+    title: 'Validation du panier'
+    numer: ID
+    receipt: Commande
+    product: Name
+    quantity: Quantité
+    price: Prix
+    pay: Payer
+
+history:
+    title: Historique de commandes
+    date: Date
+    delivery: Addresse de livraison
+    content: Contenu
+    eta: Etat
+    view: Détails
+    pending: En attende de validation
+    valid: Validée
+    empty: Vous n'avez pas encore passée de commande.
+    modal:
+        header: Détails de la commande
+        name: Nom
+        quantity: Quantité
+        close: Fermer
+
+confirm:
+    title: Confirmation
+    message: Votre commande est validée
+    back: Retour au magasin

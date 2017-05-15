@@ -11,7 +11,7 @@
     <div class="checkout">
             <div class="container">
                 {% if articles|length > 0 %}
-                <h2>{{ 'checout.contains'|trans }}
+                <h2>{{ 'checkout.contains'|trans }}
                     <span>{{ articles|length }} {{ 'checkout.product_contains'|trans }}</span></h2>
                 <div class="checkout-right">
                     <table class="timetable_sub">
@@ -92,7 +92,7 @@
                 </div>
                 <div class="checkout-left">
                     <div class="checkout-left-basket">
-                        <h4><a style="color: inherit" href="#">{{ 'checkout.continue_checkout'|trans }}</a></h4>
+                        <h4><a style="color: inherit" href="{{ path('checkout_confirm') }}">{{ 'checkout.continue_checkout'|trans }}</a></h4>
                         <ul>
                             {% set total = 0 %}
                             {% for article in articles %}

@@ -19,4 +19,15 @@ class DefaultController extends Controller {
 	public function contactAction() {
 		return $this->render( 'SupermarketBundle:Default:contact.html.twig' );
 	}
+
+	public function historyAction(){
+		$em    = $this->getDoctrine()->getManager();
+		$receipts = $em->getRepository( 'SupermarketBundle:Receipts' )->findAll();
+		foreach ($receipts as $receipt){
+			$receipt->setContent(json_decode($receipt->getContent()));
+		}
+		return $this->render('SupermarketBundle:Default:history.html.twig', array(
+			'receipts' => $receipts,
+		));
+	}
 }

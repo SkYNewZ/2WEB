@@ -1,0 +1,20 @@
+{% extends 'SupermarketBundle::layout.html.twig' %}
+
+{% block title %}{{ 'confirm.title'|trans }}{% endblock %}
+
+{% block breadcrumbs_title %}{{ parent() }}
+    <li class="active">{{ 'confirm.title'|trans }}}</li>
+{% endblock %}
+
+{% block body %}
+    <div class="checkout">
+        <div class="container">
+            <div class="row">
+                {{ 'confirm.message'|trans }}
+            </div>
+            <div class="row">
+                <a href="{{ path('homepage') }}">{{ 'confirm.back'|trans }}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

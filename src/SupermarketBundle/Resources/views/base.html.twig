@@ -13,6 +13,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="{{ asset('bundles/supermarket/css/style.css') }}" rel="stylesheet" type="text/css" media="all"/>
     <!-- font-awesome icons -->
     <link href="{{ asset('bundles/supermarket/css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/supermarket/css/custom.css') }}" rel="stylesheet">
     <!-- //font-awesome icons -->
     <!-- js -->
     <script src="{{ asset('bundles/supermarket/js/jquery-1.11.1.min.js') }}"></script>
@@ -24,6 +25,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- start-smoth-scrolling -->
     <script type="text/javascript" src="{{ asset('bundles/supermarket/js/move-top.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/supermarket/js/easing.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css"/>
     <!-- start-smoth-scrolling -->
 </head>
 <body>
@@ -41,9 +43,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 {% else %}
                     <li><a href="{{ path('fos_user_profile_show') }}">{{ app.user.username }}</a></li>
                     <li><a href="{{ path('fos_user_security_logout') }}">{{ 'Logout'|trans }}</a></li>
+                    <li><a href="{{ path('history') }}">{{ 'footer.history'|trans }}</a></li>
                 {% endif %}
-                <li><a href="{{ path('contact') }}">{{ 'Help'|trans }}</a></li>
-
             </ul>
         </div>
         <div class="product_list_header">
@@ -148,8 +149,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <ul class="info">
                     <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a
                                 href="{{ path('magasin', {'page': 1}) }}">{{ 'footer.store'|trans }}</a></li>
-                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a
-                                href="{{ path('checkout') }}">{{ 'footer.my_cart'|trans }}</a></li>
                     {% if not app.user %}
                         <li>
                             <i class="fa fa-arrow-right" aria-hidden="true"></i>
@@ -161,6 +160,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="{{ path('fos_user_registration_register') }}">{{ 'Create Account'|trans }}</a>
                         </li>
                     {% else %}
+                        <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a
+                                    href="{{ path('checkout') }}">{{ 'footer.my_cart'|trans }}</a></li>
+                        <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a
+                                    href="{{ path('history') }}">{{ 'footer.history'|trans }}</a></li>
                         <li>
                             <i class="fa fa-arrow-right" aria-hidden="true"></i>
                             <a href="{{ path('fos_user_security_logout') }}">{{ 'Logout'|trans }}</a>
@@ -205,6 +208,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- main slider-banner -->
 <script src="{{ asset('bundles/supermarket/js/skdslider.min.js') }}"></script>
 <script src="{{ asset('bundles/supermarket/js/custom.js') }}"></script>
+<script src="{{ asset('bundles/supermarket/js/jquery.fancybox.min.js') }}"></script>
 <link href="{{ asset('bundles/supermarket/css/skdslider.css') }}" rel="stylesheet">
 <!-- //main slider-banner -->
 </body>
