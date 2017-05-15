@@ -62,22 +62,30 @@ class BackendController extends Controller {
 		return $this->redirectToRoute('backend');
 	}
 
-	public function listUserAction(){
-		$em = $this->getDoctrine()->getManager();
-		$users = $em->getRepository('SupermarketBundle:User')->findAll();
-		return $this->render('SupermarketBundle:Admin:list_users.html.twig', array(
-			'users' => $users,
-		));
-	}
-
 	public function searchAction(Request $request){
 		$name = $request->query->get('query');
 		$em = $this->getDoctrine()->getManager();
-		$users = $em->getRepository('SupermarketBundle:User')->findBy(array('usernameCanonical' => mb_strtolower($name)));
-		return $this->render('SupermarketBundle:Admin:search.html.twig', array(
+		/*return $this->render('SupermarketBundle:Admin:search.html.twig', array(
 			'users' => $users,
-		));
+		));*/
 
+		$RAW_QUERY = "SELECT * FROM user WHERE 
+						username LIKE '%".$name."%'
+						OR delivery LIKE '%".$name."%'
+						OR first_name LIKE '%".$name."%'
+						OR email LIKE '%".$name."%'
+						OR id LIKE '%".$name."%'
+						OR billing LIKE '%".$name."%'
+						OR delivery LIKE '%".$name."%'
+						OR delivery LIKE '%".$name."%'
+						OR delivery LIKE '%".$name."%'
+						OR roles LIKE '%".$name."%'
+						;";
+		$statement = $em->getConnection()->prepare($RAW_QUERY);
+		$statement->execute();
+		return $this->render('SupermarketBundle:Admin:search.html.twig', array(
+			'users' => $result = $statement->fetchAll(),
+		));
 	}
 
 }
