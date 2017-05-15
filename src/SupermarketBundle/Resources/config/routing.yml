@@ -16,12 +16,26 @@ contact:
 
 checkout:
     path:     /checkout
-    defaults: { _controller: SupermarketBundle:Default:checkout }
+    defaults: { _controller: SupermarketBundle:Cart:view }
 
 magasin:
-    path:     /magasin/
+    path:     /magasin
     defaults: { _controller: SupermarketBundle:Articles:allProducts}
 
 search:
     path:     /search
     defaults: { _controller: SupermarketBundle:Articles:search}
+
+cart_add:
+    path:     /cart/add
+    defaults: { _controller: SupermarketBundle:Cart:add}
+
+cart_delete:
+    path:     /cart/delete/{id}
+    defaults: { _controller: SupermarketBundle:Cart:delete}
+
+cart_update:
+    path:     /cart/update/{id}/{number}
+    defaults: { _controller: SupermarketBundle:Cart:update}
+
+

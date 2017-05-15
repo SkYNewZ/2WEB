@@ -9,81 +9,111 @@
 {% block body %}
     <!-- checkout -->
     <div class="checkout">
-        <div class="container">
-            <h2>{{ 'checout.contains'|trans }} <span>3 {{ 'checkout.product_contains'|trans }}</span></h2>
-            <div class="checkout-right">
-                <table class="timetable_sub">
-                    <thead>
-                    <tr>
-                        <th>SL No.</th>
-                        <th>{{ 'checkout.photo'|trans }}</th>
-                        <th>{{ 'checkout.quantity'|trans }}</th>
-                        <th>{{ 'checkout.product_name'|trans }}</th>
+            <div class="container">
+                {% if articles|length > 0 %}
+                <h2>{{ 'checout.contains'|trans }}
+                    <span>{{ articles|length }} {{ 'checkout.product_contains'|trans }}</span></h2>
+                <div class="checkout-right">
+                    <table class="timetable_sub">
+                        <thead>
+                        <tr>
+                            <th>SL No.</th>
+                            <th>{{ 'checkout.photo'|trans }}</th>
+                            <th>{{ 'checkout.quantity'|trans }}</th>
+                            <th>{{ 'checkout.product_name'|trans }}</th>
 
-                        <th>{{ 'checkout.price'|trans }}</th>
-                        <th>{{ 'checkout.remove'|trans }}</th>
-                    </tr>
-                    </thead>
-                    <tr class="rem1">
-                        <td class="invert">1</td>
-                        <td class="invert-image"><a href="single.html.twig"><img src="images/1.png" alt=" "
-                                                                                 class="img-responsive"/></a></td>
-                        <td class="invert">
-                            <div class="quantity">
-                                <div class="quantity-select">
-                                    <div class="entry value-minus">&nbsp;</div>
-                                    <div class="entry value"><span>1</span></div>
-                                    <div class="entry value-plus active">&nbsp;</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="invert">Tata Salt</td>
+                            <th>{{ 'checkout.price'|trans }}</th>
+                            <th>{{ 'checkout.remove'|trans }}</th>
+                        </tr>
+                        </thead>
+                        {% for article in articles %}
+                            <tr class="rem_{{ article.id }}">
+                                <td class="invert">{{ article.id }}</td>
+                                <td class="invert-image">
+                                    <a href="{{ path('single', {'id': article.id }) }}">
+                                        <img src="{{ article.media.images.0.thumbnailHdUrl }}" alt=""
+                                             class="img-responsive"/>
+                                    </a>
+                                </td>
+                                <td class="invert">
+                                    <div class="quantity">
+                                        <div class="quantity-select">
+                                            <div class="entry value-minus" onclick='window.location = "{{ path('cart_update', {'id': article.id, 'number': -1}) }}"'>&nbsp;</div>
+                                            <div class="entry value">
+                                                <span>{{ article.season }}</span></div>
+                                            <div class="entry value-plus active"onclick='window.location = "{{ path('cart_update', {'id': article.id, 'number': 1}) }}"'>&nbsp;</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="invert">{{ article.name }}</td>
 
-                        <td class="invert">$290.00</td>
-                        <td class="invert">
-                            <div class="rem">
-                                <div class="close1"></div>
-                            </div>
-                            <script>$(document).ready(function (c) {
-                                    $('.close1').on('click', function (c) {
-                                        $('.rem1').fadeOut('slow', function (c) {
-                                            $('.rem1').remove();
+                                <td class="invert">{{ article.units.0.price.formatted }}</td>
+                                <td class="invert">
+                                    <div class="rem">
+                                        <div class="close close_{{ article.id }}"></div>
+                                    </div>
+                                    <script>$(document).ready(function (c) {
+                                            $('.close_{{ article.id }}').on('click', function (c) {
+                                                window.location = "{{ path('cart_delete', {'id': article.id}) }}";
+                                            });
                                         });
-                                    });
-                                });
-                            </script>
-                        </td>
-                    </tr>
-                    <!--quantity-->
-                    <script>
-                        $('.value-plus').on('click', function () {
-                            var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) + 1;
-                            divUpd.text(newVal);
-                        });
+                                    </script>
+                                </td>
+                            </tr>
+                            <!--quantity-->
+                        {% endfor %}
+                        {#<script>
+                            $('.value-plus').on('click', function () {
+                                var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) + 1;
+                                divUpd.text(newVal);
+                            });
 
-                        $('.value-minus').on('click', function () {
-                            var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) - 1;
-                            if (newVal >= 1) divUpd.text(newVal);
-                        });
-                    </script>
-                    <!--quantity-->
-                </table>
-            </div>
-            <div class="checkout-left">
-                <div class="checkout-left-basket">
-                    <h4>{{ 'checkout.continue_checkout'|trans }}</h4>
-                    <ul>
-                        <li>Product1 <i>-</i> <span>$15.00 </span></li>
-                        <li>{{ 'checkout.frais_total'|trans }} <i>-</i> <span>$15.00</span></li>
-                        <li>Total <i>-</i> <span>$84.00</span></li>
-                    </ul>
+                            $('.value-minus').on('click', function () {
+                                var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) - 1;
+                                if (newVal >= 1) divUpd.text(newVal);
+                                else {
+                                    var id = $(this).parent().find('.value').data('id');
+                                    $.ajax({
+                                        url: '{{ path('cart_delete') }}',
+                                        type: 'GET',
+                                        data: 'id=' + id,
+                                        success: function (e) {
+                                            $('.rem_' + id).fadeOut('slow', function (c) {
+                                                $('.rem_' + id).remove();
+                                            });
+                                            window.location = "{{ path('checkout') }}";
+                                        }
+                                    });
+                                }
+                            });
+                        </script>#}
+                        <!--quantity-->
+                    </table>
                 </div>
-                <div class="checkout-right-basket">
-                    <a href="single.html.twig"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>{{ 'checkout.continue_shopping'|trans }}</a>
+                <div class="checkout-left">
+                    <div class="checkout-left-basket">
+                        <h4><a style="color: inherit" href="#">{{ 'checkout.continue_checkout'|trans }}</a></h4>
+                        <ul>
+                            {% set total = 0 %}
+                            {% for article in articles %}
+                                {% set total = total + article.season * article.units.0.price.formatted %}
+                                <li>{{ article.id }} <i>-</i> <span>{{ article.season * article.units.0.price.formatted }}€</span></li>
+                            {% endfor %}
+                            {#<li>{{ 'checkout.frais_total'|trans }} <i>-</i> <span>$15.00</span></li>#}
+                            <li>Total <i>-</i> <span>{{ total }} €</span></li>
+                        </ul>
+                    </div>
+                    <div class="checkout-right-basket">
+                        <a href="{{ path('homepage') }}"><span class="glyphicon glyphicon-menu-left"
+                                                               aria-hidden="true"></span>{{ 'checkout.continue_shopping'|trans }}
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="clearfix"></div>
+                {% else %}
+                    {{ 'checkout.empty'|trans }}
+                {% endif %}
             </div>
-        </div>
     </div>
     <!-- //checkout -->
 {% endblock %}

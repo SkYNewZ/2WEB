@@ -27,6 +27,7 @@ checkout.quantity: Quantité
 checkout.product_name: Nom
 checkout.price: Prix
 checkout.remove: Supprimer
+checkout.empty: Vous n'avez pas ajouté d'article à votre panier.
 checkout.continue_checkout: Continuer
 checkout.frais_total: 'Frais total'
 checkout.continue_shopping: 'Retourner au magasin'

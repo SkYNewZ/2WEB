@@ -1,0 +1,26 @@
+SupermarketBundle\Entity\User:
+    type: entity
+    table: null
+    repositoryClass: SupermarketBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        lastName:
+            type: string
+            length: 255
+            column: last_name
+        firstName:
+            type: string
+            length: 255
+            column: first_name
+        billing:
+            type: string
+            length: 255
+        delivery:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

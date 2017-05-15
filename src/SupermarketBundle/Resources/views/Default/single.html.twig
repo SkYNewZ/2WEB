@@ -42,10 +42,9 @@
                         </div>
                         <div class="snipcart-details agileinfo_single_right_details"
                              style="width: 50% !important; text-align: left">
-                            <form action="#" method="post">
-                                <input type="hidden" name="item_name" value="{{ article.name }}">
-                                <input type="hidden" name="amount" value="{{ article.units.0.price.formatted }}">
-                                <input type="number" name="number" value="1" min="1" class="pull-left col-md-2 col-xs-6">
+                            <form action="{{ path('cart_add') }}" method="post" id="add-to-cart">
+                                <input type="hidden" name="id" value="{{ article.id }}">
+                                <input type="number" name="quantity" value="1" min="1" class="pull-left col-md-2 col-xs-6">
                                 <input type="submit" name="submit" value="{{ 'article.add_cart'|trans }}"
                                        class="button col-md-4 pull-right col-xs-6" style="width: 45%;">
                             </form>
