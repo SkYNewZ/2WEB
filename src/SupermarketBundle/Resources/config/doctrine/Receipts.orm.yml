@@ -23,6 +23,7 @@ SupermarketBundle\Entity\Receipts:
             type: string
             length: 255
         content:
-            type: string
-            length: 255
+            type: text
+        total:
+            type: integer
     lifecycleCallbacks: {  }

@@ -85,11 +85,13 @@ history:
     valid: Validée
     empty: Vous n'avez pas encore passée de commande.
     picture: Photo
+    total: Total
     modal:
         header: Détails de la commande
         name: Nom
         quantity: Quantité
         close: Fermer
+        price: Prix
 
 confirm:
     title: Confirmation

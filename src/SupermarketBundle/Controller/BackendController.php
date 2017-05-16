@@ -44,7 +44,7 @@ class BackendController extends Controller {
 			$receipt->setUserId($em->getRepository('SupermarketBundle:User')->find($receipt->getUserId()));
 		}
 		return $this->render('SupermarketBundle:Admin:receipts.html.twig', array(
-			'receipts' => $receipts,
+			'receipts' => array_reverse($receipts),
 		));
 	}
 
@@ -125,12 +125,12 @@ class BackendController extends Controller {
 				'No receipt found for id '.$id
 			);
 		}
-		// convert in array
+		/*// convert in array
 		$tmp = json_decode($receipt->getContent());
 		// work with
 		$tmp[0]->season = $request->request->get('quantity');
 		// update content
-		$receipt->setContent(json_encode($tmp));
+		$receipt->setContent(json_encode($tmp));*/
 
 		$receipt->setValidate(intval($request->request->get('validate')));
 		// TODO: définir la date dans le formulaire et l'intégrer ici en timestamp
@@ -164,8 +164,27 @@ class BackendController extends Controller {
 			$receipt->setUserId($em->getRepository('SupermarketBundle:User')->find($receipt->getUserId()));
 		}
 		return $this->render('SupermarketBundle:Admin:UserReceipts.html.twig', array(
-			'receipts' => $receipts,
+			'receipts' => array_reverse($receipts),
 		));
+	}
+
+	public function increaseQuantityAction(Request $request){
+		if ($request->query->get('quantity') === null)
+			return $this->redirectToRoute('backend');
+		$quantity = $request->query->get('quantity');
+		$id_article = $request->query->get('id_article');
+		$id_receipt = $request->query->get('id_receipt');
+		$em = $this->getDoctrine()->getManager();
+		$receipt = $em->getRepository('SupermarketBundle:Receipts')->find($id_receipt);
+		$content = json_decode($receipt->getContent());
+		foreach ($content as &$article)
+			if ($article->id == $id_article)
+				$article->season = $quantity;
+		$receipt->setContent(json_encode($content));
+		$em->flush();
+		var_dump('Increase quantity OK'); die();
+		return $this->redirectToRoute('backend');
+
 	}
 
 }

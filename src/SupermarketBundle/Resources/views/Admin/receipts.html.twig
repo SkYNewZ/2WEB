@@ -6,9 +6,9 @@
             <th>{{ 'history.date'|trans }}</th>
             <th>{{ 'admin.user.user'|trans }}</th>
             <th>{{ 'history.delivery'|trans }}</th>
-            <th>{{ 'history.content'|trans }}</th>
+            <th>{{ 'history.total'|trans }}</th>
             <th>{{ 'history.eta'|trans }}</th>
-            <th>{{ 'admin.receipts.validation'|trans }}</th>
+            <th>{{ 'history.eta'|trans }}</th>
         </tr>
         </thead>
         <tbody>
@@ -26,10 +26,7 @@
                 <td>
                     <address>{{ receipt.delivery }}</address>
                 </td>
-                <td>
-                    <button type="button" class="btn btn-default" data-toggle="modal"
-                            data-target="#modal_{{ receipt.id }}">{{ 'history.view'|trans }}</button>
-                </td>
+                <td>{{ receipt.total }} €</td>
                 <td id="eta_{{ receipt.id }}">
                     {% if receipt.validate == 0 %}
                         {{ 'history.pending'|trans }} <span class="glyphicon glyphicon-refresh"></span>
@@ -43,9 +40,12 @@
                     <a class="btn btn-success valid_receipt" href="{{ path('backend_valid') }}"
                        data-id="{{ receipt.id }}">{{ 'admin.valid'|trans }}</a></td>
                 {% else %} - {% endif %}
-                <td style="text-align: right!important;"><a
-                            href="{{ path('backend_receipt_form', {'id': receipt.id}) }}"><span
-                                class="glyphicon glyphicon-pencil"></span></a></td>
+                <td style="text-align: right!important;">
+                    <a href="{{ path('backend_receipt_form', {'id': receipt.id}) }}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                    <a href="#" data-toggle="modal" data-target="#modal_{{ receipt.id }}"><span class="glyphicon glyphicon-eye-open"></span></a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

@@ -42,6 +42,11 @@ class Receipts
      */
     private $content;
 
+	/**
+	 * @var integer
+	 */
+	private $total;
+
 
     /**
      * Get id
@@ -196,5 +201,28 @@ class Receipts
     {
         return $this->content;
     }
-}
 
+    /**
+     * Set total
+     *
+     * @param integer $total
+     *
+     * @return Receipts
+     */
+    public function setTotal($total)
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    /**
+     * Get total
+     *
+     * @return integer
+     */
+    public function getTotal()
+    {
+        return $this->total;
+    }
+}

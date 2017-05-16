@@ -131,9 +131,11 @@ class CartController extends Controller {
 		if (isset($products)){
 			$api      = $this->container->get( 'supermarket.api' );
 			$articles = array();
+			$total = 0;
 			if ($session->get( 'product' ) != null){
 				foreach ( $products as $prod ) {
 					array_push( $articles, $api->getOneArticle( $prod['id'] ) );
+					$total += $api->getOneArticle($prod['id'])->units[0]->price->formatted;
 				}
 				for ( $i = 0; $i < count( $articles ); $i ++ ) {
 					$articles[ $i ]->season = $products[ $i ]['quantity'];
@@ -142,6 +144,7 @@ class CartController extends Controller {
 			$receipt = new Receipts();
 			$receipt->setDate(time());
 			$receipt->setValidate(0);
+			$receipt->setTotal($total);
 			$receipt->setUserId($this->getUser()->getId());
 			$receipt->setBilling($this->getUser()->getBilling());
 			$receipt->setDelivery($this->getUser()->getDelivery());

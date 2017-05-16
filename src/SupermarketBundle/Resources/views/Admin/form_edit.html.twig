@@ -15,11 +15,6 @@
                 </label>
             </div>
             <div class="input-group input-group-lg">
-                <span class="input-group-addon">{{ 'admin.edit.quantity'|trans }}</span>
-                <input type="number" min="1" class="form-control" placeholder="{{ receipt.content.0.season }}"
-                       aria-describedby="sizing-addon1" name="quantity" value="{{ receipt.content.0.season }}">
-            </div>
-            <div class="input-group input-group-lg">
                 <span class="input-group-addon">{{ 'admin.edit.user_id'|trans }}</span>
                 <input type="number" class="form-control" placeholder="{{ receipt.userID }}"
                        aria-describedby="sizing-addon1" name="user_id" value="{{ receipt.userID }}">
@@ -35,8 +30,40 @@
                        aria-describedby="sizing-addon1" name="billing" value="{{ receipt.billing }}">
             </div>
 
+            <div class="row">
+            <table class="table table-responsive table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{{ 'history.picture'|trans }}</th>
+                    <th>{{ 'history.modal.name'|trans }}</th>
+                    <th>{{ 'history.modal.price'|trans }}</th>
+                    <th>{{ 'history.modal.quantity'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for article in receipt.content %}
+                    <tr class="history">
+                        <td>{{ article.id }}</td>
+                        <td><img src="{{ article.media.images.0.thumbnailHdUrl }}" /></td>
+                        <td><a href="{{ path('single', {'id': article.id }) }}">{{ article.name }}</a></td>
+                        <td>{{ article.units.0.price.formatted }}</td>
+                        <td style="text-align: right">
+                            <input type="number" min="1" class="form-control form_quantity"
+                                   data-url="{{ path('backend_increase') }}"
+                                   data-id="{{ article.id }}"
+                                   data-receipt="{{ receipt.id }}"
+                                   value="{{ article.season }}"/>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </div>
+            <div class="row">
             <div class="input-group">
                 <input type="submit" class="btn btn-success pull-right" value="{{ 'admin.edit.submit'|trans }}">
+            </div>
             </div>
         </form>
     </div>

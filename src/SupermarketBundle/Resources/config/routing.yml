@@ -30,6 +30,10 @@ backend_user_receipts:
     path:     /backend/user/{id}
     defaults: { _controller: SupermarketBundle:Backend:getUserReceipts }
 
+backend_increase:
+    path:     /backend/receipt/increase
+    defaults: { _controller: SupermarketBundle:Backend:increaseQuantity }
+
 backend_receipt_form:
     path:     /backend/receipt/form/{id}
     defaults: { _controller: SupermarketBundle:Backend:getFormField }

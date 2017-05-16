@@ -54,10 +54,6 @@ function changePageSize(url, size) {
     window.location = url + '?size=' + size;
 }
 
-function changePageTri(url, tri) {
-    window.location = url + '?size=' + size;
-}
-
 $('#add-to-cart').on('submit', function(e) {
     e.preventDefault();
     $.ajax({
@@ -70,4 +66,12 @@ $('#add-to-cart').on('submit', function(e) {
             })
         }
     });
+});
+
+$(".form_quantity").bind('keyup mouseup', function () {
+    $.ajax({
+        url: $(this).data('url'),
+        data: "id_article=" + $(this).data('id') + '&quantity=' + $(this).val() + '&id_receipt=' + $(this).data('receipt'),
+        type: 'get'
+    })
 });
