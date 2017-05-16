@@ -40,3 +40,7 @@
     display: inline-block;
     margin-right: 3px;
 }
+
+.moda-max-width{
+    max-width: 365px;
+}

@@ -23,8 +23,8 @@
                 <td>{{ user.id }}</td>
                 <td><a href="{{ path('backend_user_receipts', {'id': user.id }) }}">{{ user.lastName }} {{ user.firstName }}</a></td>
                 <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
-                <td>{{ user.delivery }}</td>
-                <td>{{ user.billing }}</td>
+                <td class="moda-max-width">{{ user.delivery }}</td>
+                <td class="moda-max-width">{{ user.billing }}</td>
                 <td>{{ user.lastLogin|date("d/m/Y H:i") }}</td>
             </tr>
         {% endfor %}
