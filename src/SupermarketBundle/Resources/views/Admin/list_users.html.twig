@@ -10,20 +10,22 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>{{ 'admin.user.last'|trans }}</th>
-            <th>{{ 'admin.user.first'|trans }}</th>
+            <th>{{ 'admin.user.user'|trans }}</th>
             <th>{{ 'admin.user.mail'|trans }}</th>
             <th>{{ 'admin.user.delivery'|trans }}</th>
+            <th>{{ 'admin.user.billing'|trans }}</th>
+            <th>{{ 'admin.user.last_login'|trans }}</th>
         </tr>
         </thead>
         <tbody>
         {% for user in users %}
             <tr class="history">
                 <td>{{ user.id }}</td>
-                <td>{{ user.lastName }}</td>
-                <td>{{ user.firstName }}</td>
+                <td><a href="{{ path('backend_user_receipts', {'id': user.id }) }}">{{ user.lastName }} {{ user.firstName }}</a></td>
                 <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
                 <td>{{ user.delivery }}</td>
+                <td>{{ user.billing }}</td>
+                <td>{{ user.lastLogin|date("d/m/Y H:i") }}</td>
             </tr>
         {% endfor %}
         </tbody>

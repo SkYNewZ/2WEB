@@ -4,7 +4,7 @@
         <tr>
             <th>#</th>
             <th>{{ 'history.date'|trans }}</th>
-            <th>{{ 'admin.user'|trans }}</th>
+            <th>{{ 'admin.user.user'|trans }}</th>
             <th>{{ 'history.delivery'|trans }}</th>
             <th>{{ 'history.content'|trans }}</th>
             <th>{{ 'history.eta'|trans }}</th>
@@ -16,7 +16,13 @@
             <tr>
                 <td>{{ receipt.id }}</td>
                 <td>{{ receipt.date|date("d/m/Y H:i") }}</td>
-                <td>{% if receipt.userId and receipt.userId %}{{ receipt.userId.lastName }} {{ receipt.userId.firstName }}{% endif %}</td>
+                <td>
+                    {% if receipt.userId %}
+                        <a href="{{ path('backend_user_receipts', {'id': receipt.userId.id }) }}">
+                        {{ receipt.userId.lastName }} {{ receipt.userId.firstName }}
+                        </a>
+                    {% endif %}
+                </td>
                 <td>
                     <address>{{ receipt.delivery }}</address>
                 </td>
@@ -37,7 +43,9 @@
                     <a class="btn btn-success valid_receipt" href="{{ path('backend_valid') }}"
                        data-id="{{ receipt.id }}">{{ 'admin.valid'|trans }}</a></td>
                 {% else %} - {% endif %}
-                <td style="text-align: right!important;"><a href="{{ path('backend_receipt_form', {'id': receipt.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <td style="text-align: right!important;"><a
+                            href="{{ path('backend_receipt_form', {'id': receipt.id}) }}"><span
+                                class="glyphicon glyphicon-pencil"></span></a></td>
             </tr>
         {% endfor %}
         </tbody>

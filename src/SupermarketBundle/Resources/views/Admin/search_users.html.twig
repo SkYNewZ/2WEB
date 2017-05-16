@@ -1,30 +1,33 @@
 {% extends 'SupermarketBundle:Admin:index.html.twig' %}
 
-{% block title %}{{ 'admin.search.receipt'|trans }}
+{% block title %}{{ 'admin.search.receipt'|trans }}{% endblock title %}
 
 {% block action %}{{ path('backend_search_user') }}{% endblock %}
 {% block placeholder %}{{ 'admin.search.user'|trans }}{% endblock %}
 
 {% block content %}
     {% if users|length > 0 %}
+        <h3>{{ 'admin.results'|trans }} "{{app.request.query.get("query")}}"</h3>
         <table class="table table-responsive table-hover">
             <thead>
             <tr>
                 <th>#</th>
-                <th>{{ 'admin.user.last'|trans }}</th>
-                <th>{{ 'admin.user.first'|trans }}</th>
+                <th>{{ 'admin.user.user'|trans }}</th>
                 <th>{{ 'admin.user.mail'|trans }}</th>
                 <th>{{ 'admin.user.delivery'|trans }}</th>
+                <th>{{ 'admin.user.billing'|trans }}</th>
+                <th>{{ 'admin.user.last_login'|trans }}</th>
             </tr>
             </thead>
             <tbody>
             {% for user in users %}
                 <tr class="history">
                     <td>{{ user.id }}</td>
-                    <td>{{ user.last_name }}</td>
-                    <td>{{ user.first_name }}</td>
-                    <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+                    <td><a href="{{ path('backend_user_receipts', {'id': user.id }) }}">{{ user.last_name }} {{ user.first_name }}</a></td>
+                    <td>{{ user.email }}</td>
                     <td>{{ user.delivery }}</td>
+                    <td>{{ user.billing }}</td>
+                    <td>{{ user.last_login|date("d/m/Y H:i") }}</td>
                 </tr>
             {% endfor %}
             </tbody>

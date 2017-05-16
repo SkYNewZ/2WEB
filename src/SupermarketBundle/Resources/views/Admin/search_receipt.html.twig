@@ -7,12 +7,13 @@
 
 {% block content %}
     {% if receipts|length > 0 %}
+        <h3>{{ 'admin.results'|trans }} "{{ app.request.query.get("query") }}"</h3>
     <table class="table table-hover">
         <thead>
         <tr>
             <th>#</th>
             <th>{{ 'history.date'|trans }}</th>
-            <th>{{ 'admin.user'|trans }}</th>
+            <th>{{ 'admin.user.user'|trans }}</th>
             <th>{{ 'history.delivery'|trans }}</th>
             <th>{{ 'history.content'|trans }}</th>
             <th>{{ 'history.eta'|trans }}</th>
@@ -24,7 +25,13 @@
             <tr>
                 <td>{{ receipt.id }}</td>
                 <td>{{ receipt.date|date("d/m/Y H:i") }}</td>
-                <td>{% if receipt.user_id and receipt.user_id %}{{ receipt.user_id.lastName }} {{ receipt.user_id.firstName }}{% endif %}</td>
+                <td>
+                    {% if receipt.user_id %}
+                        <a href="{{ path('backend_user_receipts', {'id': receipt.user_id.id }) }}">
+                            {{ receipt.user_id.lastName }} {{ receipt.user_id.firstName }}
+                        </a>
+                    {% endif %}
+                </td>
                 <td>
                     <address>{{ receipt.delivery }}</address>
                 </td>
@@ -92,9 +99,8 @@
         </div>
     {% endfor %}
 {% else %}
-    <div class="row">
-        <p>{{ 'admin.empty'|trans }}</p>
-    </div>
+    <h3>{{ 'admin.results'|trans }} "{{app.request.query.get("query")}}"</h3>
+    <p>{{ 'admin.empty'|trans }}</p>
 {% endif %}
 <script>
     $('.valid_receipt').on('click', function (e) {

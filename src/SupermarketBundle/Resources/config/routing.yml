@@ -26,6 +26,10 @@ backend_receipt_edit:
     path:     /backend/receipt/edit/{id}
     defaults: { _controller: SupermarketBundle:Backend:editReceipt }
 
+backend_user_receipts:
+    path:     /backend/user/{id}
+    defaults: { _controller: SupermarketBundle:Backend:getUserReceipts }
+
 backend_receipt_form:
     path:     /backend/receipt/form/{id}
     defaults: { _controller: SupermarketBundle:Backend:getFormField }

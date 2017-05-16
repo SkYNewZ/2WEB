@@ -1,0 +1,8 @@
+{% extends 'SupermarketBundle:Admin:index.html.twig' %}
+
+{% block title %}{{ 'admin.user.receipts.title'|trans }}{% endblock title %}
+
+{% block content %}
+    <h3>{{ 'admin.user.receipts.results'|trans }} {{ receipts.0.userId.lastName }} {{ receipts.0.userId.firstName }}</h3>
+    {% include 'SupermarketBundle:Admin:receipts.html.twig' %}
+{% endblock content %}

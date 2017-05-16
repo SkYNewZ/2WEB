@@ -87,9 +87,8 @@ class BackendController extends Controller {
 	}
 
 	public function searchReceiptAction(Request $request){
-		$receipt = $request->query->get('query');
+		$receipt = strtolower($request->query->get('query'));
 		$em = $this->getDoctrine()->getManager();
-
 		$RAW_QUERY = "SELECT * FROM receipts WHERE 
 						id LIKE '%".$receipt."%'
 						OR user_id LIKE '%".$receipt."%'
@@ -154,6 +153,18 @@ class BackendController extends Controller {
 		$receipt->setContent(json_decode($receipt->getContent()));
 		return $this->render('SupermarketBundle:Admin:form_edit.html.twig', array(
 			'receipt' => $receipt,
+		));
+	}
+
+	public function getUserReceiptsAction($id){
+		$em = $this->getDoctrine()->getManager();
+		$receipts = $em->getRepository('SupermarketBundle:Receipts')->findBy(array('userId' => $id));
+		foreach ($receipts as $receipt){
+			$receipt->setContent(json_decode($receipt->getContent()));
+			$receipt->setUserId($em->getRepository('SupermarketBundle:User')->find($receipt->getUserId()));
+		}
+		return $this->render('SupermarketBundle:Admin:UserReceipts.html.twig', array(
+			'receipts' => $receipts,
 		));
 	}
 

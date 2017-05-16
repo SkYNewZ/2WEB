@@ -101,7 +101,19 @@ admin:
     results: Résultats pour la recherche :
     title: Administration
     users: Client(s)
-    user: Client
+    user:
+        user: Client
+        menu: Client
+        first: Prénom
+        last: Nom
+        mail: Adresse E-mail
+        delivery: Addresse de livraison
+        billing: Addresse de facturation
+        title: Gérer les clients
+        last_login: Dernière connexion
+        receipts:
+            results: Résultat de recherche pour le client :
+            title: Commandes
     empty: Aucun résultat
     valid: Valider
     logout: Déconnexion
@@ -110,11 +122,6 @@ admin:
     search:
         user: Rechercher un utilisateur
         receipt: Rechercher une commande
-    user.first: Prénom
-    user.last: Nom
-    user.mail: Adresse E-mail
-    user.delivery: Addresse
-    user.title: Gérer les clients
     receipts:
         pending: En attente(s)
         valid: Validée(s)
@@ -126,7 +133,7 @@ admin:
         quantity: Quantité
         user_id: ID client
         address.delivery: Adresse de livraison
-        address.billing: Adresse de paiement
+        address.billing: Adresse de facturation
         valid:
             yes: Valider
             no: Ne pas valider
