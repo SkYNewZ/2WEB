@@ -6,8 +6,8 @@
         <div class="container-fluid" style="margin-top: 20px;">
             <div class="row">
                 <div class="row col-md-2 pull-right">
-                    <form action="">
-                        <input type="text" class="search-query form-control" name="query" placeholder="{{ 'admin.search'|trans }}"/>
+                    <form action="{% block action %}{{ path('backend_search_receipt') }}{% endblock action %}?query=" method="get">
+                        <input type="text" class="search-query form-control" name="query" placeholder="{% block placeholder %}{{ 'admin.search.receipt'|trans }}{% endblock placeholder %}"/>
                     </form>
                 </div>
             </div>

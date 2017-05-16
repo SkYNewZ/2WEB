@@ -1,5 +1,8 @@
 {% extends 'SupermarketBundle:Admin:index.html.twig' %}
 
+{% block action %}{{ path('backend_search_user') }}{% endblock %}
+{% block placeholder %}{{ 'admin.search.user'|trans }}{% endblock %}
+
 {% block content %}
     {% if users|length > 0 %}
         <table class="table table-responsive table-hover">

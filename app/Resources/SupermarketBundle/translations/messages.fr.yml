@@ -99,14 +99,16 @@ confirm:
 
 admin:
     nouser: Pas d'utilisateurs trouvés
-    results: Résults pour la recherche :
+    results: Résultats pour la recherche :
     title: Administration
     user: Utilisateurs
     valid: Valider
     logout: Déconnexion
     back: Retour au magasin
     dashboard: Tableau de bord
-    search: Rechercher un utilisateur
+    search:
+        user: Rechercher un utilisateur
+        receipt: Rechercher une commande
     user.first: Prénom
     user.last: Nom
     user.mail: Adresse E-mail
