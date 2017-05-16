@@ -94,7 +94,7 @@ class BackendController extends Controller {
 						OR user_id LIKE '%".$receipt."%'
 						OR delivery LIKE '%".$receipt."%'
 						OR billing LIKE '%".$receipt."%'
-						OR content LIKE '%".$receipt."%'
+						OR total LIKE '%".$receipt."%'
 						OR date LIKE '%".$receipt."%'
 						;";
 		$statement = $em->getConnection()->prepare($RAW_QUERY);
@@ -169,20 +169,24 @@ class BackendController extends Controller {
 	}
 
 	public function increaseQuantityAction(Request $request){
-		if ($request->query->get('quantity') === null)
+		if ($request->query->get('id_receipt') === null)
 			return $this->redirectToRoute('backend');
-		$quantity = $request->query->get('quantity');
+		$sign = intval($request->query->get('sign'));
 		$id_article = $request->query->get('id_article');
 		$id_receipt = $request->query->get('id_receipt');
 		$em = $this->getDoctrine()->getManager();
 		$receipt = $em->getRepository('SupermarketBundle:Receipts')->find($id_receipt);
 		$content = json_decode($receipt->getContent());
 		foreach ($content as &$article)
-			if ($article->id == $id_article)
-				$article->season = $quantity;
+			if ($article->id == $id_article){
+				$price = $article->units[0]->price->value;
+				$article->season = $article->season + $sign;
+			}
+		$receipt->setTotal($receipt->getTotal() + ($sign * $price));
 		$receipt->setContent(json_encode($content));
+		echo($receipt->getTotal());
 		$em->flush();
-		var_dump('Increase quantity OK'); die();
+		die();
 		return $this->redirectToRoute('backend');
 
 	}

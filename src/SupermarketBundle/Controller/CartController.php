@@ -135,7 +135,7 @@ class CartController extends Controller {
 			if ($session->get( 'product' ) != null){
 				foreach ( $products as $prod ) {
 					array_push( $articles, $api->getOneArticle( $prod['id'] ) );
-					$total += $api->getOneArticle($prod['id'])->units[0]->price->formatted;
+					$total += $api->getOneArticle($prod['id'])->units[0]->price->value;
 				}
 				for ( $i = 0; $i < count( $articles ); $i ++ ) {
 					$articles[ $i ]->season = $products[ $i ]['quantity'];

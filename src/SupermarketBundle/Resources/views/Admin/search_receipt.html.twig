@@ -15,10 +15,9 @@
             <th>{{ 'history.date'|trans }}</th>
             <th>{{ 'admin.user.user'|trans }}</th>
             <th>{{ 'history.delivery'|trans }}</th>
-            <th>{{ 'history.content'|trans }}</th>
             <th>{{ 'history.total'|trans }}</th>
             <th>{{ 'history.eta'|trans }}</th>
-            <th>{{ 'admin.receipts.validation'|trans }}</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -35,10 +34,6 @@
                 </td>
                 <td>
                     <address>{{ receipt.delivery }}</address>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-default" data-toggle="modal"
-                            data-target="#modal_{{ receipt.id }}">{{ 'history.view'|trans }}</button>
                 </td>
                 <td>{{ receipt.total }} €</td>
                 <td id="eta_{{ receipt.id }}">
@@ -81,6 +76,7 @@
                                 <th>#</th>
                                 <th>{{ 'history.picture'|trans }}</th>
                                 <th>{{ 'history.modal.name'|trans }}</th>
+                                <th>{{ 'history.modal.price'|trans }}</th>
                                 <th>{{ 'history.modal.quantity'|trans }}</th>
                             </tr>
                             </thead>
@@ -90,6 +86,7 @@
                                     <td>{{ article.id }}</td>
                                     <td><img src="{{ article.media.images.0.thumbnailHdUrl }}"/></td>
                                     <td><a href="{{ path('single', {'id': article.id }) }}">{{ article.name }}</a></td>
+                                    <td>{{ article.units.0.price.formatted }}</td>
                                     <td>{{ article.season }}</td>
                                 </tr>
                             {% endfor %}
@@ -101,7 +98,6 @@
                                 data-dismiss="modal">{{ 'history.modal.close'|trans }}</button>
                     </div>
                 </div>
-
             </div>
         </div>
     {% endfor %}

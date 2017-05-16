@@ -42,18 +42,27 @@
                 </tr>
                 </thead>
                 <tbody>
+                {% set total = 0 %}
                 {% for article in receipt.content %}
+                    {% set total = total + article.season * article.units.0.price.value %}
                     <tr class="history">
                         <td>{{ article.id }}</td>
                         <td><img src="{{ article.media.images.0.thumbnailHdUrl }}" /></td>
                         <td><a href="{{ path('single', {'id': article.id }) }}">{{ article.name }}</a></td>
                         <td>{{ article.units.0.price.formatted }}</td>
                         <td style="text-align: right">
-                            <input type="number" min="1" class="form-control form_quantity"
+                            {#<input type="number" class="form-control form_quantity"
                                    data-url="{{ path('backend_increase') }}"
                                    data-id="{{ article.id }}"
                                    data-receipt="{{ receipt.id }}"
-                                   value="{{ article.season }}"/>
+                                   value="{{ article.season }}"/>#}
+                            <div class="entry value-minus form_quantity" data-url="{{ path('backend_increase') }}"
+                                 data-id="{{ article.id }}"
+                                 data-receipt="{{ receipt.id }}" data-value="-1"><i class="fa fa-minus" aria-hidden="true"></i></div>
+                            <div class="entry value" id="quantity_edit-{{ article.id }}">{{ article.season }}</div>
+                            <div class="entry value-plus active form_quantity" data-url="{{ path('backend_increase') }}"
+                                 data-id="{{ article.id }}"
+                                 data-receipt="{{ receipt.id }}" data-value="1"><i class="fa fa-plus" aria-hidden="true"></i></div>
                         </td>
                     </tr>
                 {% endfor %}
@@ -61,6 +70,7 @@
             </table>
             </div>
             <div class="row">
+                <h3 class="pull-right" id="edit_total" data-text="{{ 'history.total'|trans }} : ">{{ 'history.total'|trans }} : {{ total }}€</h3>
             <div class="input-group">
                 <input type="submit" class="btn btn-success pull-right" value="{{ 'admin.edit.submit'|trans }}">
             </div>

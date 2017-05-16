@@ -25,5 +25,5 @@ SupermarketBundle\Entity\Receipts:
         content:
             type: text
         total:
-            type: integer
+            type: float
     lifecycleCallbacks: {  }

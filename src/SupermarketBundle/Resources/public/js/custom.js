@@ -68,10 +68,19 @@ $('#add-to-cart').on('submit', function(e) {
     });
 });
 
-$(".form_quantity").bind('keyup mouseup', function () {
-    $.ajax({
-        url: $(this).data('url'),
-        data: "id_article=" + $(this).data('id') + '&quantity=' + $(this).val() + '&id_receipt=' + $(this).data('receipt'),
-        type: 'get'
-    })
+$(".form_quantity").on('click', function () {
+    var id = $(this).data('id');
+    var current_value = parseInt($('#quantity_edit-' + id).html());
+    var sign = parseInt($(this).data('value'));
+    if (!(current_value + sign) <= 0){
+        $.ajax({
+            url: $(this).data('url'),
+            data: "id_article=" + $(this).data('id') + '&id_receipt=' + $(this).data('receipt') + '&sign=' + sign,
+            type: 'get',
+            success: function (e) {
+                $('#quantity_edit-' + id).text(parseInt($('#quantity_edit-' + id).html()) + sign);
+                $('#edit_total').text($('#edit_total').data('text') + e + '€');
+            }
+        })
+    }
 });
