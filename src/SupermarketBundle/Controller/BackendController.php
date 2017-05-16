@@ -11,6 +11,8 @@ namespace SupermarketBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class BackendController extends Controller {
 
@@ -39,6 +41,7 @@ class BackendController extends Controller {
 		$receipts = $em->getRepository('SupermarketBundle:Receipts')->findAll();
 		foreach ($receipts as $receipt){
 			$receipt->setContent(json_decode($receipt->getContent()));
+			$receipt->setUserId($em->getRepository('SupermarketBundle:User')->find($receipt->getUserId()));
 		}
 		return $this->render('SupermarketBundle:Admin:receipts.html.twig', array(
 			'receipts' => $receipts,
@@ -100,6 +103,7 @@ class BackendController extends Controller {
 		$receipts = $statement->fetchAll();
 		foreach ($receipts as &$result){
 			$result['content'] = json_decode($result['content']);
+			$result['user_id'] = ($em->getRepository('SupermarketBundle:User')->find($result['user_id']));
 		}
 		return $this->render('SupermarketBundle:Admin:search_receipt.html.twig', array(
 			'receipts' => $receipts,
@@ -111,6 +115,45 @@ class BackendController extends Controller {
 		$users = $em->getRepository('SupermarketBundle:User')->findAll();
 		return $this->render('SupermarketBundle:Admin:list_users.html.twig', array(
 			'users' => $users,
+		));
+	}
+
+	public function editReceiptAction($id, Request $request){
+		$em = $this->getDoctrine()->getManager();
+		$receipt = $em->getRepository('SupermarketBundle:Receipts')->find($id);
+		if (!$receipt) {
+			throw $this->createNotFoundException(
+				'No receipt found for id '.$id
+			);
+		}
+		// convert in array
+		$tmp = json_decode($receipt->getContent());
+		// work with
+		$tmp[0]->season = $request->request->get('quantity');
+		// update content
+		$receipt->setContent(json_encode($tmp));
+
+		$receipt->setValidate($request->request->get('validate'));
+		// TODO: définir la date dans le formulaire et l'intégrer ici en timestamp
+		/*$receipt->setDate($request->request->get('_id'));*/
+		$receipt->setUserId($request->request->get('user_id'));
+		$receipt->setDelivery($request->request->get('delivery'));
+		$receipt->setBilling($request->request->get('billing'));
+		$em->flush();
+		return $this->redirectToRoute('backend');
+
+	}
+
+	public function getFormFieldAction($id){$em = $this->getDoctrine()->getManager();
+		$receipt = $em->getRepository('SupermarketBundle:Receipts')->find($id);
+		if (!$receipt) {
+			throw $this->createNotFoundException(
+				'No receipt found for id '.$id
+			);
+		}
+		$receipt->setContent(json_decode($receipt->getContent()));
+		return $this->render('SupermarketBundle:Admin:form_edit.html.twig', array(
+			'receipt' => $receipt,
 		));
 	}
 

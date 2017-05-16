@@ -98,10 +98,11 @@ confirm:
 
 
 admin:
-    nouser: Pas d'utilisateurs trouvés
     results: Résultats pour la recherche :
     title: Administration
-    user: Utilisateurs
+    users: Client(s)
+    user: Client
+    empty: Aucun résultat
     valid: Valider
     logout: Déconnexion
     back: Retour au magasin
@@ -114,7 +115,17 @@ admin:
     user.mail: Adresse E-mail
     user.delivery: Addresse
     receipts:
-        pending: En attente
-        valid: Validé
+        pending: En attente(s)
+        valid: Validée(s)
         validation: Validation
         total: Toutes les commandes
+    edit:
+        title: Editer la facture
+        quantity: Quantité
+        user_id: ID client
+        address.delivery: Adresse de livraison
+        address.billing: Adresse de paiement
+        valid:
+            yes: Valider
+            no: Ne pas valider
+        submit: Mettre à jour

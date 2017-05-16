@@ -22,6 +22,14 @@ backend_user:
     path:     /backend/users
     defaults: { _controller: SupermarketBundle:Backend:listUsers }
 
+backend_receipt_edit:
+    path:     /backend/receipt/edit/{id}
+    defaults: { _controller: SupermarketBundle:Backend:editReceipt }
+
+backend_receipt_form:
+    path:     /backend/receipt/form/{id}
+    defaults: { _controller: SupermarketBundle:Backend:getFormField }
+
 category:
     path:     /category/{name}
     defaults: { _controller: SupermarketBundle:Articles:show }

@@ -1,0 +1,41 @@
+{% extends 'SupermarketBundle:Admin:index.html.twig' %}
+
+{% block content %}
+    <div class="container" style="width: 50%">
+        <h2>{{ 'admin.edit.title'|trans }} #{{ receipt.id }}</h2>
+        <form class="form-horizontal" method="post" action="{{ path('backend_receipt_edit', {'id': receipt.id}) }}">
+            <div class="input-group input-group-lg">
+                <label class="radio-inline"><input type="radio" name="validate" value="{{ receipt.validate }}"
+                                                   {% if receipt.validate == 1 %}checked{% endif %}>{{ 'admin.edit.valid.yes'|trans }}
+                </label>
+                <label class="radio-inline"><input type="radio" name="validate" value="{{ receipt.validate }}"
+                                                   {% if receipt.validate == 0 %}checked{% endif %}>{{ 'admin.edit.valid.no'|trans }}
+                </label>
+            </div>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">{{ 'admin.edit.quantity'|trans }}</span>
+                <input type="number" min="1" class="form-control" placeholder="{{ receipt.content.0.season }}"
+                       aria-describedby="sizing-addon1" name="quantity" value="{{ receipt.content.0.season }}">
+            </div>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">{{ 'admin.edit.user_id'|trans }}</span>
+                <input type="number" class="form-control" placeholder="{{ receipt.userID }}"
+                       aria-describedby="sizing-addon1" name="user_id" value="{{ receipt.userID }}">
+            </div>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">{{ 'admin.edit.address.delivery'|trans }}</span>
+                <input type="text" class="form-control" placeholder="{{ receipt.delivery }}"
+                       aria-describedby="sizing-addon1" name="delivery" value="{{ receipt.delivery }}">
+            </div>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">{{ 'admin.edit.address.billing'|trans }}</span>
+                <input type="text" class="form-control" placeholder="{{ receipt.billing }}"
+                       aria-describedby="sizing-addon1" name="billing" value="{{ receipt.billing }}">
+            </div>
+
+            <div class="input-group">
+                <input type="submit" class="btn btn-success pull-right" value="{{ 'admin.edit.submit'|trans }}">
+            </div>
+        </form>
+    </div>
+{% endblock content %}

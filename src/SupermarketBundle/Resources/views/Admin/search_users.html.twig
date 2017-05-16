@@ -29,6 +29,6 @@
         </table>
     {% else %}
         <h3>{{ 'admin.results'|trans }} "{{app.request.query.get("query")}}"</h3>
-        <p>{{ 'admin.nouser'|trans }}</p>
+        <p>{{ 'admin.empty'|trans }}</p>
     {% endif %}
 {% endblock content %}
