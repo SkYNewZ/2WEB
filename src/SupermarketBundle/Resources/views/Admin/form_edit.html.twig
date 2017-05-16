@@ -1,14 +1,16 @@
 {% extends 'SupermarketBundle:Admin:index.html.twig' %}
 
+{% block title %}{{ 'admin.edit.title2'|trans }}{% endblock title %}
+
 {% block content %}
     <div class="container" style="width: 50%">
         <h2>{{ 'admin.edit.title'|trans }} #{{ receipt.id }}</h2>
         <form class="form-horizontal" method="post" action="{{ path('backend_receipt_edit', {'id': receipt.id}) }}">
             <div class="input-group input-group-lg">
-                <label class="radio-inline"><input type="radio" name="validate" value="{{ receipt.validate }}"
+                <label class="radio-inline"><input type="radio" name="validate" value="1}"
                                                    {% if receipt.validate == 1 %}checked{% endif %}>{{ 'admin.edit.valid.yes'|trans }}
                 </label>
-                <label class="radio-inline"><input type="radio" name="validate" value="{{ receipt.validate }}"
+                <label class="radio-inline"><input type="radio" name="validate" value="0"
                                                    {% if receipt.validate == 0 %}checked{% endif %}>{{ 'admin.edit.valid.no'|trans }}
                 </label>
             </div>

@@ -1,5 +1,7 @@
 {% extends 'SupermarketBundle:Admin:index.html.twig' %}
 
+{% block title %}{{ 'admin.user.title'|trans }}{% endblock title %}
+
 {% block action %}{{ path('backend_search_user') }}{% endblock %}
 {% block placeholder %}{{ 'admin.search.user'|trans }}{% endblock %}
 

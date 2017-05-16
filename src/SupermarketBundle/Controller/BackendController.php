@@ -133,7 +133,7 @@ class BackendController extends Controller {
 		// update content
 		$receipt->setContent(json_encode($tmp));
 
-		$receipt->setValidate($request->request->get('validate'));
+		$receipt->setValidate(intval($request->request->get('validate')));
 		// TODO: définir la date dans le formulaire et l'intégrer ici en timestamp
 		/*$receipt->setDate($request->request->get('_id'));*/
 		$receipt->setUserId($request->request->get('user_id'));

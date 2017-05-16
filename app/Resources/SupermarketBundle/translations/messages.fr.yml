@@ -114,6 +114,7 @@ admin:
     user.last: Nom
     user.mail: Adresse E-mail
     user.delivery: Addresse
+    user.title: Gérer les clients
     receipts:
         pending: En attente(s)
         valid: Validée(s)
@@ -121,6 +122,7 @@ admin:
         total: Toutes les commandes
     edit:
         title: Editer la facture
+        title2: Edition de facture
         quantity: Quantité
         user_id: ID client
         address.delivery: Adresse de livraison
