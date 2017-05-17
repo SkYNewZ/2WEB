@@ -52,12 +52,12 @@
             <tbody>
             {% set total = 0 %}
             {% for article in articles %}
-                {% set total = total + article.season * article.units.0.price.formatted %}
+                {% set total = total + article.season * article.units.0.price.value %}
                 <tr>
                     <td class="col-md-9"><em>{{ article.name }}</em></td>
                     <td class="col-md-1" style="text-align: center"> {{ article.season }} </td>
                     <td class="col-md-1 text-center">{{ article.units.0.price.formatted }}</td>
-                    <td class="col-md-1 text-center">{{ article.season * article.units.0.price.formatted }}
+                    <td class="col-md-1 text-center">{{ article.season * article.units.0.price.value }}
                         €
                     </td>
                 </tr>
