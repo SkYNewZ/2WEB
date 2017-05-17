@@ -1,6 +1,6 @@
 # 2WEB
 Supermarket - SUPINFO - Lemaire Quentin - 214520
 
-- Front-office : [http://supermarket.lemairepro.fr](http://supermarket.lemairepro.fr)
-- Back-office : [http://supermarket.lemairepro.fr/backend/dashboard](http://supermarket.lemairepro.fr/backend/dashboard)
+- Front-office : [http://supmarket.lemairepro.fr](http://supmarket.lemairepro.fr)
+- Back-office : [http://supmarket.lemairepro.fr/backend/dashboard](http://supmarket.lemairepro.fr/backend/dashboard)
     * (Login 'admin'; password 'admin')
