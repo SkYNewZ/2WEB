@@ -144,3 +144,4 @@ admin:
             yes: Valider
             no: Ne pas valider
         submit: Mettre à jour
+        date: Date de création
