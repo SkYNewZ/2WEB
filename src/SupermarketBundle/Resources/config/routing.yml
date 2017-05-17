@@ -3,7 +3,7 @@ homepage:
     defaults: { _controller: SupermarketBundle:Default:index }
 
 backend:
-    path:     /backend
+    path:     /backend/dashboard
     defaults: { _controller: SupermarketBundle:Backend:index }
 
 backend_valid:
