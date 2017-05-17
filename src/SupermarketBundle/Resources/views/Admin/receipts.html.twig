@@ -41,7 +41,7 @@
                     <a class="btn btn-success valid_receipt" href="{{ path('backend_valid') }}"
                        data-id="{{ receipt.id }}">{{ 'admin.valid'|trans }}</a></td>
                 {% else %} - {% endif %}
-                <td><a target="_blank" href="{{ path('backend_download',{'id': receipt.id }) }}" type="button" class="btn btn-warning">{{ 'history.download.pdf'|trans }}</a></td>
+                <td><a target="_blank" href="{{ path('backend_download',{'id': receipt.id, 'date': receipt.date|date("d_m_Y") }) }}" type="button" class="btn btn-warning">{{ 'history.download.pdf'|trans }}</a></td>
                 <td style="text-align: right!important;">
                     <a href="{{ path('backend_receipt_form', {'id': receipt.id}) }}">
                         <span class="glyphicon glyphicon-pencil"></span>

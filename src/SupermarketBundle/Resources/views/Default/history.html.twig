@@ -44,7 +44,7 @@
                                             class="glyphicon glyphicon glyphicon-ok" style="color: green"></span>
                                     {% endif %}
                                 </td>
-                                <td><a target="_blank" href="{{ path('backend_download',{'id': receipt.id }) }}" type="button" class="btn btn-default">{{ 'history.download.pdf'|trans }}</a></td>
+                                <td><a target="_blank" href="{{ path('backend_download',{'id': receipt.id, 'date': receipt.date|date("d_m_Y") }) }}" type="button" class="btn btn-default">{{ 'history.download.pdf'|trans }}</a></td>
                             </tr>
                         {% endfor %}
                         </tbody>

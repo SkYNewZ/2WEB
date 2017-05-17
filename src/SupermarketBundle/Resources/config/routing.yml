@@ -35,7 +35,7 @@ backend_increase:
     defaults: { _controller: SupermarketBundle:Backend:increaseQuantity }
 
 backend_download:
-    path:     /backend/download/{id}
+    path:     /backend/download/facture-{date}-{id}.pdf
     defaults: { _controller: SupermarketBundle:Backend:generatePDF }
 
 backend_receipt_form:

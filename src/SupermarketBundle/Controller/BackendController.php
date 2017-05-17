@@ -9,6 +9,7 @@
 namespace SupermarketBundle\Controller;
 
 
+use SupermarketBundle\Entity\Receipts;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -118,9 +119,8 @@ class BackendController extends Controller {
 		));
 	}
 
-	public function editReceiptAction($id, Request $request){
+	public function editReceiptAction(Receipts $receipt, $id, Request $request){
 		$em = $this->getDoctrine()->getManager();
-		$receipt = $em->getRepository('SupermarketBundle:Receipts')->find($id);
 		if (!$receipt) {
 			throw $this->createNotFoundException(
 				'No receipt found for id '.$id
@@ -138,8 +138,8 @@ class BackendController extends Controller {
 
 	}
 
-	public function getFormFieldAction($id){$em = $this->getDoctrine()->getManager();
-		$receipt = $em->getRepository('SupermarketBundle:Receipts')->find($id);
+	public function getFormFieldAction(Receipts $receipt, $id){
+		$em = $this->getDoctrine()->getManager();
 		if (!$receipt) {
 			throw $this->createNotFoundException(
 				'No receipt found for id '.$id
@@ -186,10 +186,9 @@ class BackendController extends Controller {
 
 	}
 
-	public function generatePDFAction($id, Request $request){
+	public function generatePDFAction(Receipts $receipt, $id){
 		$path = $this->container->getParameter('path_pdf');
 		$em = $this->getDoctrine()->getManager();
-		$receipt = $em->getRepository('SupermarketBundle:Receipts')->find($id);
 		$user = $em->getRepository('SupermarketBundle:User')->find($receipt->getUserId());
 		if (!file_exists($path.(date('d-m-Y', $receipt->getDate())).'-#'.$id.'.pdf')){
 			$this->get('knp_snappy.pdf')->generateFromHtml(
