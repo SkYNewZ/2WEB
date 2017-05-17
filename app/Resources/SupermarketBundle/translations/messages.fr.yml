@@ -18,6 +18,8 @@ search.title: Rechercher
 Logout: 'Se déconnecter'
 Profile: Profil
 
+pdf:
+    title: Facture
 
 slider:
     message1: 'Supermarket, par Quentin Lemaire'
@@ -86,6 +88,8 @@ history:
     empty: Vous n'avez pas encore passée de commande.
     picture: Photo
     total: Total
+    download:
+        pdf: Télécharger PDF
     modal:
         header: Détails de la commande
         name: Nom

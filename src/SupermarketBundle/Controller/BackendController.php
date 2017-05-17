@@ -10,6 +10,7 @@ namespace SupermarketBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -183,6 +184,29 @@ class BackendController extends Controller {
 		die();
 		return $this->redirectToRoute('backend');
 
+	}
+
+	public function generatePDFAction($id, Request $request){
+		$path = '/var/www/html/supermarket/web/docs/facture-';
+		$em = $this->getDoctrine()->getManager();
+		$receipt = $em->getRepository('SupermarketBundle:Receipts')->find($id);
+		$user = $em->getRepository('SupermarketBundle:User')->find($receipt->getUserId());
+		if (!file_exists($path.(date('d-m-Y-H', $receipt->getDate())).'-'.$id.'.pdf')){
+			$this->get('knp_snappy.pdf')->generateFromHtml(
+				$this->renderView(
+					'SupermarketBundle:Pdf:pdf.html.twig',
+					array(
+						'receipt'  => $receipt,
+						'user' =>$user,
+						'articles' => json_decode($receipt->getContent()),
+					)
+				),
+				'/var/www/html/supermarket/web/docs/facture-'.(date('d-m-Y-H', $receipt->getDate())).'-'.$id.'.pdf'
+			);
+		}
+		$file = $path.(date('d-m-Y-H', $receipt->getDate())).'-'.$id.'.pdf';
+		$response = new BinaryFileResponse($file);
+		return $response;
 	}
 
 }

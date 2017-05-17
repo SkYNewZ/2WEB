@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new SupermarketBundle\SupermarketBundle(),
 	        new Circle\RestClientBundle\CircleRestClientBundle(),
 	        new FOS\UserBundle\FOSUserBundle(),
+	        new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -1,96 +1,85 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style>
+<!DOCTYPE html>
+<html lang="fr">
+
+<!-- Mirrored from forum.azyrusthemes.com/04_new_account.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 May 2017 00:38:22 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ 'pdf.title'|trans }} #{{ receipt.Id }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
     body {
         margin-top: 20px;
     }
-</style>
+    </style>
+</head>
+<body>
 <div class="container">
     <div class="row">
-        <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+        <div class="well col-xs-10 col-sm-10 col-md-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-2">
             <div class="row">
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    <address>
-                        <strong>Elf Cafe</strong>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <address style="max-width: 210px;">
+                        <strong>{{ user.firstName }} {{ app.user.lastName }}</strong>
                         <br>
-                        2135 Sunset Blvd
                         <br>
-                        Los Angeles, CA 90026
+                        <strong>{{ 'pay.delivery'|trans }}</strong>
                         <br>
-                        <abbr title="Phone">P:</abbr> (213) 484-6829
+                        {{ user.delivery }}
+                        <br>
+                        <strong>{{ 'pay.billing'|trans }}</strong>
+                        <br>
+                        {{ user.billing }}
                     </address>
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                <div class="col-xs-12 col-sm-6 col-md-6 text-right">
                     <p>
-                        <em>Date: 1st November, 2013</em>
+                        <em>Date: {{ "now"|date("d/m/Y") }}</em>
                     </p>
                     <p>
-                        <em>Receipt #: 34522677W</em>
+                        <em>{{ 'pay.numer'|trans }} #: {{ receipt.Id }} </em>
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="text-center">
-                    <h1>Receipt</h1>
+                    <h1>{{ 'pay.receipt'|trans }}</h1>
                 </div>
-                </span>
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th>Product</th>
-                        <th>#</th>
-                        <th class="text-center">Price</th>
+                        <th>{{ 'pay.product'|trans }}</th>
+                        <th>{{ 'pay.quantity'|trans }}</th>
+                        <th class="text-center">{{ 'pay.price'|trans }}</th>
                         <th class="text-center">Total</th>
                     </tr>
                     </thead>
                     <tbody>
+                    {% set total = 0 %}
+                    {% for article in articles %}
+                        {% set total = total + article.season * article.units.0.price.formatted %}
+                        <tr>
+                            <td class="col-md-9"><em>{{ article.name }}</em></td>
+                            <td class="col-md-1" style="text-align: center"> {{ article.season }} </td>
+                            <td class="col-md-1 text-center">{{ article.units.0.price.formatted }}</td>
+                            <td class="col-md-1 text-center">{{ article.season * article.units.0.price.formatted }}
+                                €
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr></tr>
                     <tr>
-                        <td class="col-md-9"><em>Baked Rodopa Sheep Feta</em></h4></td>
-                        <td class="col-md-1" style="text-align: center"> 2 </td>
-                        <td class="col-md-1 text-center">$13</td>
-                        <td class="col-md-1 text-center">$26</td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-9"><em>Lebanese Cabbage Salad</em></h4></td>
-                        <td class="col-md-1" style="text-align: center"> 1 </td>
-                        <td class="col-md-1 text-center">$8</td>
-                        <td class="col-md-1 text-center">$8</td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-9"><em>Baked Tart with Thyme and Garlic</em></h4></td>
-                        <td class="col-md-1" style="text-align: center"> 3 </td>
-                        <td class="col-md-1 text-center">$16</td>
-                        <td class="col-md-1 text-center">$48</td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td class="text-right">
-                            <p>
-                                <strong>Subtotal: </strong>
-                            </p>
-                            <p>
-                                <strong>Tax: </strong>
-                            </p></td>
-                        <td class="text-center">
-                            <p>
-                                <strong>$6.94</strong>
-                            </p>
-                            <p>
-                                <strong>$6.94</strong>
-                            </p></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
+                        <td>  </td>
+                        <td>  </td>
                         <td class="text-right"><h4><strong>Total: </strong></h4></td>
-                        <td class="text-center text-danger"><h4><strong>$31.53</strong></h4></td>
+                        <td class="text-center text-danger"><h5><strong>{{ total }} €</strong></h5></td>
                     </tr>
                     </tbody>
                 </table>
-                <button type="button" class="btn btn-success btn-lg btn-block">
-                    Pay Now   <span class="glyphicon glyphicon-chevron-right"></span>
-                </button></td>
             </div>
         </div>
     </div>
+</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -17,6 +17,7 @@
             <th>{{ 'history.delivery'|trans }}</th>
             <th>{{ 'history.total'|trans }}</th>
             <th>{{ 'history.eta'|trans }}</th>
+            <th>{{ 'history.download.pdf'|trans }}</th>
             <th></th>
         </tr>
         </thead>
@@ -49,6 +50,7 @@
                     <a class="btn btn-success valid_receipt" href="{{ path('backend_valid') }}"
                        data-id="{{ receipt.id }}">{{ 'admin.valid'|trans }}</a></td>
                 {% else %} - {% endif %}
+                <td><a href="{{ path('backend_download',{'id': receipt.id }) }}" type="button" class="btn btn-warning">{{ 'history.download.pdf'|trans }}</a></td>
                 <td style="text-align: right!important;">
                     <a href="{{ path('backend_receipt_form', {'id': receipt.id}) }}">
                         <span class="glyphicon glyphicon-pencil"></span>
