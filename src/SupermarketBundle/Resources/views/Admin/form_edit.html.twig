@@ -3,6 +3,14 @@
 {% block title %}{{ 'admin.edit.title2'|trans }}{% endblock title %}
 
 {% block content %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
+    </script>
     <div class="container" style="width: 50%">
         <h2>{{ 'admin.edit.title'|trans }} #{{ receipt.id }}</h2>
         <form class="form-horizontal" method="post" action="{{ path('backend_receipt_edit', {'id': receipt.id}) }}">
@@ -30,6 +38,12 @@
                        aria-describedby="sizing-addon1" name="billing" value="{{ receipt.billing }}">
             </div>
 
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">{{ 'admin.edit.date'|trans }}</span>
+                <input type="text" class="form-control" id="datepicker" placeholder="{{ receipt.date }}"
+                       aria-describedby="sizing-addon1" name="billing" value="{{ receipt.date|date("d/m/Y") }}">
+            </div>
+
             <div class="row">
             <table class="table table-responsive table-hover">
                 <thead>
@@ -51,11 +65,6 @@
                         <td><a href="{{ path('single', {'id': article.id }) }}">{{ article.name }}</a></td>
                         <td>{{ article.units.0.price.formatted }}</td>
                         <td style="text-align: right">
-                            {#<input type="number" class="form-control form_quantity"
-                                   data-url="{{ path('backend_increase') }}"
-                                   data-id="{{ article.id }}"
-                                   data-receipt="{{ receipt.id }}"
-                                   value="{{ article.season }}"/>#}
                             <div class="entry value-minus form_quantity" data-url="{{ path('backend_increase') }}"
                                  data-id="{{ article.id }}"
                                  data-receipt="{{ receipt.id }}" data-value="-1"><i class="fa fa-minus" aria-hidden="true"></i></div>

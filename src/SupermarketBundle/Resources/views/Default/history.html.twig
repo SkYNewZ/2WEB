@@ -26,7 +26,7 @@
                         {% for receipt in receipts %}
                             <tr>
                                 <td>{{ receipt.id }}</td>
-                                <td>{{ receipt.date|date("d/m/Y H:i") }}</td>
+                                <td>{{ receipt.date|date("d/m/Y") }}</td>
                                 <td class="moda-max-width">
                                     <address>{{ receipt.delivery }}</address>
                                 </td>

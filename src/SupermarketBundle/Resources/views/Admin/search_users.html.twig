@@ -27,7 +27,7 @@
                     <td>{{ user.email }}</td>
                     <td class="moda-max-width">{{ user.delivery }}</td>
                     <td class="moda-max-width">{{ user.billing }}</td>
-                    <td>{{ user.last_login|date("d/m/Y H:i") }}</td>
+                    <td>{{ user.last_login|date("d/m/Y") }}</td>
                 </tr>
             {% endfor %}
             </tbody>

@@ -24,7 +24,7 @@
         {% for receipt in receipts %}
             <tr>
                 <td>{{ receipt.id }}</td>
-                <td>{{ receipt.date|date("d/m/Y H:i") }}</td>
+                <td>{{ receipt.date|date("d/m/Y") }}</td>
                 <td>
                     {% if receipt.user_id %}
                         <a href="{{ path('backend_user_receipts', {'id': receipt.user_id.id }) }}">

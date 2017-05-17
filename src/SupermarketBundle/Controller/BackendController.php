@@ -125,16 +125,10 @@ class BackendController extends Controller {
 				'No receipt found for id '.$id
 			);
 		}
-		/*// convert in array
-		$tmp = json_decode($receipt->getContent());
-		// work with
-		$tmp[0]->season = $request->request->get('quantity');
-		// update content
-		$receipt->setContent(json_encode($tmp));*/
-
+		$date = new \DateTime($request->request->get('date'));
 		$receipt->setValidate(intval($request->request->get('validate')));
 		// TODO: définir la date dans le formulaire et l'intégrer ici en timestamp
-		/*$receipt->setDate($request->request->get('_id'));*/
+		$receipt->setDate($date->getTimestamp());
 		$receipt->setUserId($request->request->get('user_id'));
 		$receipt->setDelivery($request->request->get('delivery'));
 		$receipt->setBilling($request->request->get('billing'));

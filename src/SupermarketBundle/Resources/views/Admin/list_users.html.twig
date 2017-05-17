@@ -25,7 +25,7 @@
                 <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
                 <td class="moda-max-width">{{ user.delivery }}</td>
                 <td class="moda-max-width">{{ user.billing }}</td>
-                <td>{{ user.lastLogin|date("d/m/Y H:i") }}</td>
+                <td>{{ user.lastLogin|date("d/m/Y") }}</td>
             </tr>
         {% endfor %}
         </tbody>
