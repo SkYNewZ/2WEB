@@ -190,6 +190,8 @@ class BackendController extends Controller {
 		$path = $this->container->getParameter('path_pdf');
 		$em = $this->getDoctrine()->getManager();
 		$user = $em->getRepository('SupermarketBundle:User')->find($receipt->getUserId());
+		if ($user->getId() != $this->getUser()->getId())
+			throw new AccessDeniedException();
 		if (!file_exists($path.(date('d-m-Y', $receipt->getDate())).'-#'.$id.'.pdf')){
 			$this->get('knp_snappy.pdf')->generateFromHtml(
 				$this->renderView(
