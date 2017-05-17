@@ -17,3 +17,6 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+
+    # path for generate PDF
+    path_pdf: '/var/www/html/supermarket/web/docs/facture-'
