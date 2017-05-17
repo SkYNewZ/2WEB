@@ -9,7 +9,13 @@ class DefaultController extends Controller {
 	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
 	public function indexAction() {
-		return $this->render( 'SupermarketBundle:Default:index.html.twig' );
+		$api  = $this->container->get( 'supermarket.api' );
+		$mens = $api->getMen();
+		$womens = $api->getWomen();
+		return $this->render( 'SupermarketBundle:Default:index.html.twig', array(
+			'mens' => $mens,
+			'womens' => $womens,
+		) );
 	}
 
 	/**

@@ -9,8 +9,8 @@ Help: Aide
 'Search for a Product': 'Rechercher un produit'
 store.title: Magasin
 index.top_selling: 'Meilleures ventes'
-offer.pub: 'Offres promotionnelles'
-offer.today: 'Offres du jour'
+offer.men: 'Mode Homme'
+offer.women: 'Mode femme'
 'Brand Store': Marques
 'New offers': 'Nouvelles offres'
 view_list.item_per_page: '%number% articles par pages'

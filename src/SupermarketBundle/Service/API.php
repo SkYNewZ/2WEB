@@ -140,4 +140,18 @@ class API extends Controller{
 
 	}
 
+	public function getMen(){
+		return $this->getHTTP('https://api.zalando.com/articles/', array(
+			'fullText' => 'MEN',
+			'pageSize' => 6,
+		))->content;
+	}
+
+	public function getWomen(){
+		return $this->getHTTP('https://api.zalando.com/articles/', array(
+			'fullText' => 'WOMEN',
+			'pageSize' => 6,
+		))->content;
+	}
+
 }
