@@ -187,11 +187,11 @@ class BackendController extends Controller {
 	}
 
 	public function generatePDFAction($id, Request $request){
-		$path = '/var/www/html/supermarket/web/docs/facture-';
+		$path = $this->container->getParameter('path_pdf');
 		$em = $this->getDoctrine()->getManager();
 		$receipt = $em->getRepository('SupermarketBundle:Receipts')->find($id);
 		$user = $em->getRepository('SupermarketBundle:User')->find($receipt->getUserId());
-		if (!file_exists($path.(date('d-m-Y-H', $receipt->getDate())).'-'.$id.'.pdf')){
+		if (!file_exists($path.(date('d-m-Y', $receipt->getDate())).'-#'.$id.'.pdf')){
 			$this->get('knp_snappy.pdf')->generateFromHtml(
 				$this->renderView(
 					'SupermarketBundle:Pdf:pdf.html.twig',
@@ -201,10 +201,10 @@ class BackendController extends Controller {
 						'articles' => json_decode($receipt->getContent()),
 					)
 				),
-				'/var/www/html/supermarket/web/docs/facture-'.(date('d-m-Y-H', $receipt->getDate())).'-'.$id.'.pdf'
+				$path.(date('d-m-Y', $receipt->getDate())).'-#'.$id.'.pdf'
 			);
 		}
-		$file = $path.(date('d-m-Y-H', $receipt->getDate())).'-'.$id.'.pdf';
+		$file = $path.(date('d-m-Y', $receipt->getDate())).'-#'.$id.'.pdf';
 		$response = new BinaryFileResponse($file);
 		return $response;
 	}
