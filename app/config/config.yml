@@ -90,9 +90,3 @@ fos_user:
     profile:
         form:
             type: SupermarketBundle\Form\ProfileType
-
-knp_snappy:
-    pdf:
-        enabled:    true
-        binary:     /usr/local/bin/wkhtmltopdf
-        options:    []
