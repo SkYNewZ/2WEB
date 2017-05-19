@@ -6,22 +6,33 @@ imports:
 #        metadata_cache_driver: apc
 #        result_cache_driver: apc
 #        query_cache_driver: apc
-
-monolog:
-    handlers:
-        main:
-            type: fingers_crossed
-            action_level: error
-            handler: nested
-        nested:
-            type: stream
-            path: '%kernel.logs_dir%/%kernel.environment%.log'
-            level: debug
-        console:
-            type: console
-
 knp_snappy:
     pdf:
         enabled:    true
         binary:     /usr/bin/wkhtmltopdf
         options:    []
+
+monolog:
+    handlers:
+        main:
+            type:               fingers_crossed
+            action_level:       error
+            handler:            grouped
+        grouped:
+            type:               group
+            members:            [streamed, swift]
+        streamed:
+            type:               stream
+            path:               "%kernel.logs_dir%/%kernel.environment%.log"
+            level:              debug
+        swift:
+            type:               swift_mailer
+            from_email:         supmarket@lemairepro.fr
+            to_email:           quentin@lemairepro.fr
+            subject:            "Problem on supmarket"
+            level:              debug
+        login:
+            type:               stream
+            path:               "%kernel.logs_dir%/auth.log"
+            level:              info
+            channels:           security
