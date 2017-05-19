@@ -33,7 +33,7 @@ class DefaultController extends Controller {
 			$receipt->setContent(json_decode($receipt->getContent()));
 		}
 		return $this->render('SupermarketBundle:Default:history.html.twig', array(
-			'receipts' => $receipts,
+			'receipts' => array_reverse($receipts),
 		));
 	}
 }
