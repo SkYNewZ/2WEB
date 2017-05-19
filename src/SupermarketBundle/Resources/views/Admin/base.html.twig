@@ -18,23 +18,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         function hideURLbar() {
             window.scrollTo(0, 1);
         } </script>
-    <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('bundles/supermarket/css/bootstrap.css') }}" rel='stylesheet' type='text/css'/>
-    <!-- Custom CSS -->
+    {#<link href="{{ asset('bundles/supermarket/css/bootstrap.css') }}" rel='stylesheet' type='text/css'/>
     <link href="{{ asset('bundles/supermarket/css/style_back.css') }}" rel='stylesheet' type='text/css'/>
-    <link rel="stylesheet" href="{{ asset('bundles/supermarket/css/morris.css') }}" type="text/css"/>
-    <!-- Graph CSS -->
+    <link href="{{ asset('bundles/supermarket/css/morris.css') }}" type="text/css"/>
     <link href="{{ asset('bundles/supermarket/css/font-awesome.css') }}" rel="stylesheet">
     <link href="{{ asset('bundles/supermarket/css/custom.css') }}" rel="stylesheet">
-    <!-- jQuery -->
-    <script src="{{ asset('bundles/supermarket/js/jquery-1.11.1.min.js') }}"></script>
-    <!-- //jQuery -->
     <link href='{{ asset('bundles/supermarket/css/font.google.1.css') }}' rel='stylesheet'
           type='text/css'/>
     <link href='{{ asset('bundles/supermarket/css/font.google.2.css') }}' rel='stylesheet' type='text/css'>
-    <!-- lined-icons -->
-    <link rel="stylesheet" href="{{ asset('bundles/supermarket/css/icon-font.min.css') }}" type='text/css'/>
-    <!-- //lined-icons -->
+    <link href="{{ asset('bundles/supermarket/css/icon-font.min.css') }}" type='text/css'/>#}
+    {% stylesheets filter='cssrewrite, ?scssphp'
+    'bundles/supermarket/css/bootstrap.css'
+    'bundles/supermarket/css/style_back.css'
+    'bundles/supermarket/css/morris.css'
+    'bundles/supermarket/css/font-awesome.css'
+    'bundles/supermarket/css/custom.css'
+    'bundles/supermarket/css/font.google.1.css'
+    'bundles/supermarket/css/font.google.2.css'
+    'bundles/supermarket/css/icon-font.min.css'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
 </head>
 <body>
 <div class="page-container">
@@ -76,58 +80,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <li><a href="{{ path('homepage') }}"><i class="fa fa-undo" aria-hidden="true"></i><span>{{ 'admin.back'|trans }}</span>
                     <div class="clearfix"></div>
                 </a></li>
-            {#<li id="menu-academico"><a href="#"><i class="fa fa-list-ul"
-                                                   aria-hidden="true"></i><span> Short Codes</span> <span
-                            class="fa fa-angle-right" style="float: right"></span>
-                    <div class="clearfix"></div>
-                </a>
-                <ul id="menu-academico-sub">
-                    <li id="menu-academico-avaliacoes"><a href="#">Icons</a></li>
-                    <li id="menu-academico-avaliacoes"><a href="#">Typography</a></li>
-                    <li id="menu-academico-avaliacoes"><a href="#">Faq</a></li>
-                </ul>
-            </li>
-            <li id="menu-academico"><a href="#"><i class="fa fa-exclamation-triangle"
-                                                                aria-hidden="true"></i><span>Error Page</span>
-                    <div class="clearfix"></div>
-                </a></li>
-            <li id="menu-academico"><a href="#"><i class="fa fa-cogs"
-                                                   aria-hidden="true"></i><span> UI Components</span> <span
-                            class="fa fa-angle-right" style="float: right"></span>
-                    <div class="clearfix"></div>
-                </a>
-                <ul id="menu-academico-sub">
-                    <li id="menu-academico-avaliacoes"><a href="#">Buttons</a></li>
-                    <li id="menu-academico-avaliacoes"><a href="#">Grids</a></li>
-                </ul>
-            </li>
-            <li><a href="#"><i class="fa fa-table"></i> <span>Tables</span>
-                    <div class="clearfix"></div>
-                </a></li>
-            <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> <span>Maps</span>
-                    <div class="clearfix"></div>
-                </a></li>
-            <li id="menu-academico"><a href="#"><i class="fa fa-file-text-o"></i> <span>Pages</span> <span
-                            class="fa fa-angle-right" style="float: right"></span>
-                    <div class="clearfix"></div>
-                </a>
-                <ul id="menu-academico-sub">
-                    <li id="menu-academico-boletim"><a href="#">Calendar</a></li>
-                    <li id="menu-academico-avaliacoes"><a href="#">Sign In</a></li>
-                    <li id="menu-academico-avaliacoes"><a href="#">Sign Up</a></li>
-
-
-                </ul>
-            </li>
-            <li><a href="#"><i class="fa fa-check-square-o nav_icon"></i><span>Forms</span> <span
-                            class="fa fa-angle-right" style="float: right"></span>
-                    <div class="clearfix"></div>
-                </a>
-                <ul>
-                    <li><a href="#"> Input</a></li>
-                    <li><a href="#">Validation</a></li>
-                </ul>
-            </li>#}
         </ul>
     </div>
 </div>
@@ -151,16 +103,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         toggle = !toggle;
     });
 </script>
-<!--js -->
-<script src="{{ asset('bundles/supermarket/js/jquery.nicescroll.js') }}"></script>
-<script src="{{ asset('bundles/supermarket/js/custom.js') }}"></script>
-<script src="{{ asset('bundles/supermarket/js/scripts_back.js') }}"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="{{ asset('bundles/supermarket/js/bootstrap.min.js') }}"></script>
-<!-- /Bootstrap Core JavaScript -->
-<!-- morris JavaScript -->
-<script src="{{ asset('bundles/supermarket/js/raphael-min.js') }}"></script>
-<script src="{{ asset('bundles/supermarket/js/morris.js') }}"></script>
+{% javascripts filter='?jsqueeze'
+'bundles/supermarket/js/jquery-1.11.1.min.js'
+'bundles/supermarket/js/jquery.nicescroll.js'
+'bundles/supermarket/js/custom.js'
+'bundles/supermarket/js/scripts_back.js'
+'bundles/supermarket/js/bootstrap.min.js'
+'bundles/supermarket/js/raphael-min.js'
+'bundles/supermarket/js/morris.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
 <script>
     $(document).ready(function () {
         //BOX BUTTON SHOW AND CLOSE
