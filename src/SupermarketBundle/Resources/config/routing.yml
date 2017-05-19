@@ -7,7 +7,7 @@ backend:
     defaults: { _controller: SupermarketBundle:Backend:index }
 
 backend_valid:
-    path:     /backend/valid
+    path:     /backend/valid/{id}
     defaults: { _controller: SupermarketBundle:Backend:valid }
 
 backend_search_receipt:

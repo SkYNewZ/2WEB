@@ -47,7 +47,7 @@
                 </td>
                 <td id="validation_{{ receipt.id }}" style="text-align: center">
                     {% if receipt.validate == 0 %}
-                    <a class="btn btn-success valid_receipt" href="{{ path('backend_valid') }}"
+                    <a class="btn btn-success valid_receipt" data-txt="{{ 'history.valid'|trans }}" href="#" data-url="{{ path('backend_valid', {'id': receipt.id }) }}"
                        data-id="{{ receipt.id }}">{{ 'admin.valid'|trans }}</a></td>
                 {% else %} - {% endif %}
                 <td><a target="_blank" href="{{ path('backend_download',{'id': receipt.id, 'date': receipt.date|date("d_m_Y") }) }}" type="button" class="btn btn-warning">{{ 'history.download.pdf'|trans }}</a></td>
@@ -107,23 +107,5 @@
     <h3>{{ 'admin.results'|trans }} "{{app.request.query.get("query")}}"</h3>
     <p>{{ 'admin.empty'|trans }}</p>
 {% endif %}
-<script>
-    $('.valid_receipt').on('click', function (e) {
-        e.preventDefault();
-        var id = $(this).data('id');
-        $.ajax({
-            url: "{{ path('backend_valid') }}",
-            type: 'get',
-            data: 'id=' + id,
-            success: function (html) {
-                $('#validation_' + id).html(' - ');
-                var txt = "{{ 'history.valid'|trans }}";
-                $('#eta_' + id).html(txt + "<span class='glyphicon glyphicon-ok' style='color: green'></span>");
-                $('#receipts_valid').text(parseInt($('#receipts_valid').html()) + 1);
-                $('#receipts_pending').text(parseInt($('#receipts_pending').html()) - 1);
-            }
-        })
-    });
-</script>
 {% endblock content %}
 

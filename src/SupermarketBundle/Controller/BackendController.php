@@ -58,10 +58,8 @@ class BackendController extends Controller {
 		));
 	}
 
-	public function validAction(Request $request){
-		$id = $request->query->get('id');
+	public function validAction(Receipts $receipt){
 		$em = $this->getDoctrine()->getManager();
-		$receipt = $em->getRepository('SupermarketBundle:Receipts')->find($id);
 		$receipt->setValidate(1);
 		$em->flush();
 		return $this->redirectToRoute('backend');

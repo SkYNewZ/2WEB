@@ -116,3 +116,19 @@ $('.history-quantity').on('click', function () {
         }
     })
 });
+
+$('.valid_receipt').on('click', function (e) {
+    e.preventDefault();
+    var id = $(this).data('id');
+    var url = $(this).data('url');
+    var txt = $(this).data('txt');
+    $.ajax({
+        url: url,
+        success: function (html) {
+            $('#validation_' + id).html(' - ');
+            $('#eta_' + id).html(txt + "<span class='glyphicon glyphicon-ok' style='color: green'></span>");
+            $('#receipts_valid').text(parseInt($('#receipts_valid').html()) + 1);
+            $('#receipts_pending').text(parseInt($('#receipts_pending').html()) - 1);
+        }
+    })
+});
