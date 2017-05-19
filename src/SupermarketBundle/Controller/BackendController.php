@@ -13,6 +13,7 @@ use SupermarketBundle\Entity\Receipts;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
@@ -62,7 +63,12 @@ class BackendController extends Controller {
 		$em = $this->getDoctrine()->getManager();
 		$receipt->setValidate(1);
 		$em->flush();
-		return $this->redirectToRoute('backend');
+		$response = new Response();
+		$response->setContent(json_encode(array(
+			'validate' => 1,
+		)));
+		$response->headers->set('Content-Type', 'application/json');
+		return $response;
 	}
 
 	public function searchUserAction(Request $request){
@@ -117,13 +123,8 @@ class BackendController extends Controller {
 		));
 	}
 
-	public function editReceiptAction(Receipts $receipt, $id, Request $request){
+	public function editReceiptAction(Receipts $receipt, Request $request){
 		$em = $this->getDoctrine()->getManager();
-		if (!$receipt) {
-			throw $this->createNotFoundException(
-				'No receipt found for id '.$id
-			);
-		}
 		$date = new \DateTime($request->request->get('date'));
 		$receipt->setValidate(intval($request->request->get('validate')));
 		// TODO: définir la date dans le formulaire et l'intégrer ici en timestamp
@@ -136,13 +137,7 @@ class BackendController extends Controller {
 
 	}
 
-	public function getFormFieldAction(Receipts $receipt, $id){
-		$em = $this->getDoctrine()->getManager();
-		if (!$receipt) {
-			throw $this->createNotFoundException(
-				'No receipt found for id '.$id
-			);
-		}
+	public function getFormFieldAction(Receipts $receipt){
 		$receipt->setContent(json_decode($receipt->getContent()));
 		return $this->render('SupermarketBundle:Admin:form_edit.html.twig', array(
 			'receipt' => $receipt,
@@ -177,10 +172,12 @@ class BackendController extends Controller {
 			}
 		$receipt->setTotal($receipt->getTotal() + ($sign * $price));
 		$receipt->setContent(json_encode($content));
-		echo($receipt->getTotal());
-		$em->flush();
-		die();
-		return $this->redirectToRoute('backend');
+		$response = new Response();
+		$response->setContent(json_encode(array(
+			'new_total' => $receipt->getTotal(),
+		)));
+		$response->headers->set('Content-Type', 'application/json');
+		return $response;
 
 	}
 
