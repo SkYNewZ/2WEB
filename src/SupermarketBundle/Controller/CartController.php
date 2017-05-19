@@ -11,7 +11,9 @@ namespace SupermarketBundle\Controller;
 
 use SupermarketBundle\Entity\Receipts;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class CartController extends Controller {
@@ -30,17 +32,14 @@ class CartController extends Controller {
 		$session = new Session();
 		if ( $session->get( 'product' ) !== null ) {
 			$array = $session->get( 'product' );
-			var_dump($array);
 			$add = true;
 			foreach ($array as &$key){
 				if ($key['id'] == $request->request->get('id')){
 					$key['quantity'] += 1;
 					$add = false;
-					var_dump($key);
 				}
 			}
 			$session->set( 'product', $array );
-			var_dump($array);
 			if ($add){
 				array_push( $array, $request->request->all() );
 				$session->set( 'product', $array );
@@ -49,7 +48,12 @@ class CartController extends Controller {
 		} else {
 			$session->set( 'product', array( $request->request->all() ) );
 		}
-		return $this->redirectToRoute( 'checkout' );
+		$response = new Response();
+		$response->setContent(json_encode(array(
+			'cart' => $session->get('product'),
+		)));
+		$response->headers->set('Content-Type', 'application/json');
+		return $response;
 	}
 
 	public function deleteAction( $id ) {
@@ -59,12 +63,18 @@ class CartController extends Controller {
 			foreach ( $array as $k => $c ) {
 				if ( $c['id'] == $id ) {
 					unset( $array[ $k ] );
+					$array = array_values($array);
 					break;
 				}
 			}
 		}
 		$session->set( 'product', $array );
-		return $this->redirectToRoute( 'checkout' );
+		$response = new Response();
+		$response->setContent(json_encode(array(
+			'cart' => $session->get('product'),
+		)));
+		$response->headers->set('Content-Type', 'application/json');
+		return $response;
 	}
 
 	public function updateAction($id, $number) {
@@ -74,12 +84,22 @@ class CartController extends Controller {
 			foreach ( $array as $k => &$c ) {
 				if ( $c['id'] == $id ) {
 					$c['quantity'] += $number;
+					$new_quantity = $c['quantity'];
+					if ($new_quantity == 0){
+						unset($array[$k]);
+						$array = array_values($array);
+					}
 					break;
 				}
 			}
 		}
 		$session->set( 'product', $array );
-		return $this->redirectToRoute( 'checkout' );
+		$response = new Response();
+		$response->setContent(json_encode(array(
+			'new_quantity' => $new_quantity,
+		)));
+		$response->headers->set('Content-Type', 'application/json');
+		return $response;
 	}
 
 	/**

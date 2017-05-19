@@ -19,6 +19,7 @@ class AppKernel extends Kernel
 	        new Circle\RestClientBundle\CircleRestClientBundle(),
 	        new FOS\UserBundle\FOSUserBundle(),
 	        new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+	        new Symfony\Bundle\AsseticBundle\AsseticBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -84,3 +84,35 @@ $(".form_quantity").on('click', function () {
         })
     }
 });
+
+// delete from cart
+$('.dete_form_cart').on('click', function () {
+    var id = $(this).data('id');
+    var url = $(this).data('url');
+    var div = $('.rem_' + id);
+    $.ajax({
+        url: url,
+        success: function (e) {
+            div.fadeOut(function () {
+                $(this).remove();
+                if($('#tbody-history').children().length <= 0){
+                    window.location.reload();
+                }
+            });
+        }
+    })
+});
+
+$('.history-quantity').on('click', function () {
+    var url = $(this).data('url');
+    var id = $(this).data('id');
+    $.ajax({
+        url: url,
+        success: function (e) {
+            if (e['new_quantity'] == 0){
+                window.location.reload();
+            }
+            $('#quantity_edit-' + id).text(e['new_quantity']);
+        }
+    })
+});

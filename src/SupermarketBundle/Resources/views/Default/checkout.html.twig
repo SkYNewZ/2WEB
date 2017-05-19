@@ -26,6 +26,7 @@
                             <th>{{ 'checkout.remove'|trans }}</th>
                         </tr>
                         </thead>
+                        <tbody id="tbody-history">
                         {% for article in articles %}
                             <tr class="rem_{{ article.id }}">
                                 <td class="invert">{{ article.id }}</td>
@@ -38,10 +39,10 @@
                                 <td class="invert">
                                     <div class="quantity">
                                         <div class="quantity-select">
-                                            <div class="entry value-minus" onclick='window.location = "{{ path('cart_update', {'id': article.id, 'number': -1}) }}"'>&nbsp;</div>
+                                            <div class="entry value-minus history-quantity" data-id ="{{ article.id }}" data-url="{{ path('cart_update', {'id': article.id, 'number': -1}) }}">&nbsp;</div>
                                             <div class="entry value">
-                                                <span>{{ article.season }}</span></div>
-                                            <div class="entry value-plus active" onclick='window.location = "{{ path('cart_update', {'id': article.id, 'number': 1}) }}"'>&nbsp;</div>
+                                                <span id="quantity_edit-{{ article.id }}">{{ article.season }}</span></div>
+                                            <div class="entry value-plus active history-quantity" data-id ="{{ article.id }}" data-url="{{ path('cart_update', {'id': article.id, 'number': 1}) }}">&nbsp;</div>
                                         </div>
                                     </div>
                                 </td>
@@ -50,44 +51,12 @@
                                 <td class="invert">{{ article.units.0.price.formatted }}</td>
                                 <td class="invert">
                                     <div class="rem">
-                                        <div class="close close_{{ article.id }}"></div>
+                                        <div class="close dete_form_cart" data-id = '{{ article.id }}' data-url="{{ path('cart_delete', {'id': article.id}) }}"></div>
                                     </div>
-                                    <script>$(document).ready(function (c) {
-                                            $('.close_{{ article.id }}').on('click', function (c) {
-                                                window.location = "{{ path('cart_delete', {'id': article.id}) }}";
-                                            });
-                                        });
-                                    </script>
                                 </td>
                             </tr>
-                            <!--quantity-->
                         {% endfor %}
-                        {#<script>
-                            $('.value-plus').on('click', function () {
-                                var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) + 1;
-                                divUpd.text(newVal);
-                            });
-
-                            $('.value-minus').on('click', function () {
-                                var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) - 1;
-                                if (newVal >= 1) divUpd.text(newVal);
-                                else {
-                                    var id = $(this).parent().find('.value').data('id');
-                                    $.ajax({
-                                        url: '{{ path('cart_delete') }}',
-                                        type: 'GET',
-                                        data: 'id=' + id,
-                                        success: function (e) {
-                                            $('.rem_' + id).fadeOut('slow', function (c) {
-                                                $('.rem_' + id).remove();
-                                            });
-                                            window.location = "{{ path('checkout') }}";
-                                        }
-                                    });
-                                }
-                            });
-                        </script>#}
-                        <!--quantity-->
+                        </tbody>
                     </table>
                 </div>
                 <div class="checkout-left">

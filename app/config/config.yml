@@ -90,3 +90,12 @@ fos_user:
     profile:
         form:
             type: SupermarketBundle\Form\ProfileType
+
+assetic:
+  debug:          '%kernel.debug%'
+  use_controller: '%kernel.debug%'
+  filters:
+    cssrewrite: ~
+    jsqueeze:   ~
+    scssphp:
+      formatter: 'Leafo\ScssPhp\Formatter\Compressed'

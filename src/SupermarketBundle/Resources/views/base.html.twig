@@ -6,27 +6,26 @@
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="keywords" content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
-    <!-- //for-mobile-apps -->
-    <link href="{{ asset('bundles/supermarket/css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all"/>
+    {#<link href="{{ asset('bundles/supermarket/css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all"/>
     <link href="{{ asset('bundles/supermarket/css/style.css') }}" rel="stylesheet" type="text/css" media="all"/>
-    <!-- font-awesome icons -->
     <link href="{{ asset('bundles/supermarket/css/font-awesome.css') }}" rel="stylesheet">
     <link href="{{ asset('bundles/supermarket/css/custom.css') }}" rel="stylesheet">
-    <!-- //font-awesome icons -->
-    <!-- js -->
-    <script src="{{ asset('bundles/supermarket/js/jquery-1.11.1.min.js') }}"></script>
-    <!-- //js -->
-    <link href='https://fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic'
-          rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
-          rel='stylesheet' type='text/css'>
-    <!-- start-smoth-scrolling -->
-    <script type="text/javascript" src="{{ asset('bundles/supermarket/js/move-top.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/supermarket/js/easing.js') }}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css"/>
-    <!-- start-smoth-scrolling -->
+    <link href="{{ asset('bundles/supermarket/css/font.google.1.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/supermarket/css/font.google.2.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/supermarket/css/skdslider.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/supermarket/css/jquery.fancybox.min.css') }}" rel="stylesheet">#}
+    {% stylesheets filter='cssrewrite, ?scssphp'
+    'bundles/supermarket/css/bootstrap.css'
+    'bundles/supermarket/css/style.css'
+    'bundles/supermarket/css/font-awesome.css'
+    'bundles/supermarket/css/custom.css'
+    'bundles/supermarket/css/font.google.1.css'
+    'bundles/supermarket/css/font.google.2.css'
+    'bundles/supermarket/css/skdslider.css'
+    'bundles/supermarket/css/jquery.fancybox.min.css'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
 </head>
 <body>
 <!-- header -->
@@ -206,14 +205,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="clearfix"></div>
     </div>
 </div>
-<!-- //footer -->
+{#<script src="{{ asset('bundles/supermarket/js/jquery-1.11.1.min.js') }}"></script>
+<script src="{{ asset('bundles/supermarket/js/move-top.js') }}"></script>
+<script src="{{ asset('bundles/supermarket/js/easing.js') }}"></script>
 <script src="{{ asset('bundles/supermarket/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('bundles/supermarket/js/minicart.min.js') }}"></script>
-<!-- main slider-banner -->
 <script src="{{ asset('bundles/supermarket/js/skdslider.min.js') }}"></script>
 <script src="{{ asset('bundles/supermarket/js/custom.js') }}"></script>
-<script src="{{ asset('bundles/supermarket/js/jquery.fancybox.min.js') }}"></script>
-<link href="{{ asset('bundles/supermarket/css/skdslider.css') }}" rel="stylesheet">
-<!-- //main slider-banner -->
+<script src="{{ asset('bundles/supermarket/js/jquery.fancybox.min.js') }}"></script>#}
+{% javascripts filter='?jsqueeze'
+'bundles/supermarket/js/jquery-1.11.1.min.js'
+'bundles/supermarket/js/move-top.js'
+'bundles/supermarket/js/easing.js'
+'bundles/supermarket/js/bootstrap.min.js'
+'bundles/supermarket/js/minicart.min.js'
+'bundles/supermarket/js/skdslider.min.js'
+'bundles/supermarket/js/custom.js'
+'bundles/supermarket/js/jquery.fancybox.min.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
 </body>
 </html>
