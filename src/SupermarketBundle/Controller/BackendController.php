@@ -126,12 +126,15 @@ class BackendController extends Controller {
 	public function editReceiptAction(Receipts $receipt, Request $request){
 		$em = $this->getDoctrine()->getManager();
 		$date = new \DateTime($request->request->get('date'));
+		// $total = intval($request->request->get('total'));
 		$receipt->setValidate(intval($request->request->get('validate')));
 		// TODO: définir la date dans le formulaire et l'intégrer ici en timestamp
 		$receipt->setDate($date->getTimestamp());
 		$receipt->setUserId($request->request->get('user_id'));
 		$receipt->setDelivery($request->request->get('delivery'));
 		$receipt->setBilling($request->request->get('billing'));
+		// TODO: update content only if the admin press "submit" button, with total (easy, ajax is done) AND quantity/articles
+		/*$receipt->setTotal($total);*/
 		$em->flush();
 		return $this->redirectToRoute('backend');
 
@@ -176,6 +179,7 @@ class BackendController extends Controller {
 		$response->setContent(json_encode(array(
 			'new_total' => $receipt->getTotal(),
 		)));
+		$em->flush();
 		$response->headers->set('Content-Type', 'application/json');
 		return $response;
 

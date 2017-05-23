@@ -80,6 +80,7 @@ $(".form_quantity").on('click', function () {
             success: function (e) {
                 $('#quantity_edit-' + id).text(parseInt($('#quantity_edit-' + id).html()) + sign);
                 $('#edit_total').text($('#edit_total').data('text') + e['new_total'] + '€');
+                $('#total_hidden').text(e['new_total']);
             }
         })
     }

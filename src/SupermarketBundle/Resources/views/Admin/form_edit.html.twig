@@ -81,6 +81,7 @@
             <div class="row">
                 <h3 class="pull-right" id="edit_total" data-text="{{ 'history.total'|trans }} : ">{{ 'history.total'|trans }} : {{ total }}€</h3>
             <div class="input-group">
+                <input type="hidden" value="{{ total }}" id="total_hidden" name="total">
                 <input type="submit" class="btn btn-success pull-right" value="{{ 'admin.edit.submit'|trans }}">
             </div>
             </div>
